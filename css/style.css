@@ -1,0 +1,58 @@
+body{
+  background:#0b1020;
+  color:white;
+  scroll-behavior:smooth;
+}
+
+.navbar{
+  background:rgba(10,10,20,0.9)!important;
+  backdrop-filter: blur(10px);
+}
+
+.hero{
+  min-height:100vh;
+  background:
+  linear-gradient(120deg,rgba(10,20,60,.85),rgba(0,0,0,.95)),
+  url("../img/background.jpg") center/cover;
+  display:flex;
+  align-items:center;
+}
+
+.glow{
+  box-shadow:0 0 40px rgba(56,189,248,.6);
+}
+
+.section-title{
+  text-align:center;
+  margin-bottom:50px;
+}
+
+.section-title span{
+  color:#38bdf8;
+}
+
+.badge-tech{
+  background:#020617;
+  border:1px solid #1e3a8a;
+  border-radius:20px;
+  padding:8px 15px;
+  margin:5px;
+  display:inline-block;
+}
+
+.card-custom{
+  background:#020617;
+  border-radius:20px;
+  padding:25px;
+  transition:.3s;
+  height:100%;
+}
+
+.card-custom:hover{
+  transform:translateY(-10px);
+  box-shadow:0 0 40px rgba(56,189,248,.4);
+}
+
+footer{
+  background:#020617;
+}
