@@ -2,150 +2,230 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>CV – Raphaël Macker</title>
+<title>CV — Raphaël Macker</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-<div class="container">
-<a class="navbar-brand fw-bold" href="index.html">Mon Portfolio</a>
-<button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
-<span class="navbar-toggler-icon"></span>
-</button>
-<div class="collapse navbar-collapse" id="menu">
-<ul class="navbar-nav ms-auto">
-<li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
-<li class="nav-item"><a class="nav-link active" href="#">CV</a></li>
-<li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
-</ul>
-</div>
-</div>
+<nav class="navbar" id="navbar">
+  <a class="nav-brand" href="index.html">
+    <span class="dot"></span>
+    RM.portfolio
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a class="nav-link" href="index.html">Accueil</a></li>
+    <li><a class="nav-link active" href="cv.html">CV</a></li>
+    <li><a class="nav-link" href="portfolio.html">Portfolio</a></li>
+    <li><a class="nav-link" href="bulletin.html">Bulletin</a></li>
+  </ul>
+  <div class="nav-toggle" id="navToggle">
+    <span></span><span></span><span></span>
+  </div>
 </nav>
 
-<section class="hero py-5">
-<div class="container text-center">
-<img src="img/profile.jpg" class="img-fluid rounded-circle glow mb-3" width="150">
-<h1 class="display-5 fw-bold">Raphaël Macker</h1>
-<h4 class="text-info">Étudiant en BUT Réseaux & Télécommunications</h4>
-<p>Passionné par les réseaux, la cybersécurité et l’administration système. Je cherche à acquérir des compétences professionnelles solides.</p>
-<a href="https://drive.google.com/uc?export=download&id=1JccbKCTvKN_-PAAf5PE0r1o2BJhIoOjd"
-   class="btn btn-primary mt-3"
-   target="_blank">
-   Télécharger mon CV
-</a>
-</div>
-</section>
-
-<section class="container py-5">
-<div class="section-title">
-<h2>Mon <span>Parcours</span></h2>
-</div>
-
-<div class="timeline">
-<div class="timeline-item">
-<h5>2025 – Présent</h5>
-<p><strong>BUT Réseaux & Télécommunications</strong> – IUT de Béthune</p>
-<p>Apprentissage des réseaux, programmation, cybersécurité et administration système.</p>
-</div>
-
-<div class="timeline-item">
-<h5>2023 – 2025</h5>
-<p><strong>Bac STI2D – Option SIN</strong> – Lycée des Flandres</p>
-<p>Acquisition de bases en systèmes d’information, programmation et réseaux.</p>
-</div>
-
-<div class="timeline-item1">
-<h5>2022 – 2023</h5>
-<p><strong>Bac Seconde Générale & Technologique </strong> – Lycée des Flandres</p>
-</div>
-
-</div>
-</section>
-
-<section class="bg-dark py-5">
-<div class="container">
-<div class="section-title">
-<h2>Mes <span>Compétences</span></h2>
-</div>
-
-<div class="row g-4 justify-content-center text-center">
-
-<div class="col-md-4 col-lg-3">
-<div class="card-custom p-4">
-<h5>Réseaux</h5>
-<p>TCP/IP, VLAN, routage, LAN/WAN</p>
-<div class="progress mt-2">
-<div class="progress-bar bg-info" role="progressbar" style="width:100%">Notion de base</div>
-</div>
-</div>
-</div>
-
-<div class="col-md-4 col-lg-3">
-<div class="card-custom p-4">
-<h5>Sécurité</h5>
-<p>Firewall, Wireshark, sécurisation réseau</p>
-<div class="progress mt-2">
-<div class="progress-bar bg-info" role="progressbar" style="width:100%">Notion de base</div>
-</div>
-</div>
-</div>
-
-<div class="col-md-4 col-lg-3">
-<div class="card-custom p-4">
-<h5>Programmation</h5>
-<p>Python, scripts, automatisation</p>
-<div class="progress mt-2">
-<div class="progress-bar bg-info" role="progressbar" style="width:100%">Notion de base</div>
-</div>
-</div>
-</div>
-
-
-</div>
-</div>
-</section>
-
-<section class="container py-5">
-  <div class="section-title">
-    <h2>Mes <span>Projets / Expériences</span></h2>
+<!-- ─── PAGE HERO ─── -->
+<section class="page-hero">
+  <div class="page-hero-bg">
+    <div class="page-hero-orb a"></div>
   </div>
-
-  <div class="row g-4 justify-content-center">
-
-    <div class="col-md-4 col-lg-3">
-      <div class="card-custom p-3">
-        <h5>Détection de gaz</h5>
-        <p>Projet de bac système IoT avec capteurs et microcontrôleur pour sécuriser un espace public.</p>
-      </div>
+  <div class="container">
+    <div class="page-hero-line">// Curriculum Vitæ</div>
+    <h1 class="page-hero-title">Raphaël<br>Macker</h1>
+    <p class="page-hero-sub">Étudiant BUT Réseaux &amp; Télécommunications — IUT de Béthune</p>
+    <div style="margin-top:2rem;opacity:0;animation:fadeUp .6s ease forwards .8s">
+      <a href="https://drive.google.com/uc?export=download&id=1AM0I2MH3RgiMkraWSOZHNTy_KPih3JOn"
+         class="btn-primary" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Télécharger le CV complet
+      </a>
     </div>
-
-    <div class="col-md-4 col-lg-3">
-      <div class="card-custom p-3">
-        <h5>LAN / VLAN</h5>
-        <p>Création d’un réseau local avec VLAN et services configurés.</p>
-      </div>
-    </div>
-
-    <div class="col-md-4 col-lg-3">
-      <div class="card-custom p-3">
-        <h5>Scripts Python</h5>
-        <p>Automatisation et analyse réseau.</p>
-      </div>
-    </div>
-
   </div>
 </section>
 
-<footer class="text-center p-4">
-<p class="mb-1">© 2025 – Raphaël Macker - Étudiant BUT Réseaux & Télécommunications</p>
-<a href="mentions.html" class="text-light">Mentions légales</a>
+<!-- ─── PARCOURS ─── -->
+<section class="section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">Parcours</div>
+      <h2 class="section-title">Formation<br>&amp; <em>Expériences</em></h2>
+      <p class="section-sub">Mon chemin vers l'expertise réseau et télécommunications.</p>
+    </div>
+
+    <div class="timeline reveal" style="transition-delay:.2s">
+      <div class="timeline-item">
+        <div class="timeline-date">2025 — Présent</div>
+        <div class="timeline-role">BUT Réseaux &amp; Télécommunications</div>
+        <div class="timeline-place">IUT de Béthune</div>
+        <div class="timeline-desc">
+          Apprentissage des réseaux, programmation, cybersécurité et administration système.
+          Formation en alternance orientée vers les infrastructures télécom et réseaux IP.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">2023 — 2025</div>
+        <div class="timeline-role">Baccalauréat STI2D — Option SIN</div>
+        <div class="timeline-place">Lycée des Flandres</div>
+        <div class="timeline-desc">
+          Acquisition de bases solides en systèmes d'information, programmation et réseaux.
+          Option Systèmes d'Information et Numérique.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">2022 — 2023</div>
+        <div class="timeline-role">Seconde Générale &amp; Technologique</div>
+        <div class="timeline-place">Lycée des Flandres</div>
+        <div class="timeline-desc">
+          Première année de lycée, découverte des filières technologiques.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── COMPÉTENCES ─── -->
+<section class="section skills-bg">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">Compétences techniques</div>
+      <h2 class="section-title">Stack<br><em>technique</em></h2>
+      <p class="section-sub">Les technologies et outils que je maîtrise et développe au fil de ma formation.</p>
+    </div>
+    <div class="skills-grid reveal" style="transition-delay:.15s">
+      <div class="skill-card">
+        <div class="skill-number">01</div>
+        <span class="skill-icon">🌐</span>
+        <div class="skill-title">Réseaux</div>
+        <div class="skill-desc">TCP/IP, VLAN, routage statique, LAN/WAN, adressage IPv4/IPv6</div>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar"><div class="skill-bar-fill" style="width:65%"></div></div>
+          <div class="skill-level">Notions solides</div>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-number">02</div>
+        <span class="skill-icon">🐧</span>
+        <div class="skill-title">Linux</div>
+        <div class="skill-desc">Administration système, ligne de commande, gestion de services, scripts</div>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div>
+          <div class="skill-level">Bon niveau</div>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-number">03</div>
+        <span class="skill-icon">🛡️</span>
+        <div class="skill-title">Sécurité</div>
+        <div class="skill-desc">Wireshark, analyse de trafic, firewall, détection d'anomalies</div>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar"><div class="skill-bar-fill" style="width:50%"></div></div>
+          <div class="skill-level">Notions</div>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-number">04</div>
+        <span class="skill-icon">🐍</span>
+        <div class="skill-title">Python</div>
+        <div class="skill-desc">Scripts d'automatisation, analyse réseau, traitement de données</div>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar"><div class="skill-bar-fill" style="width:55%"></div></div>
+          <div class="skill-level">Intermédiaire</div>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-number">05</div>
+        <span class="skill-icon">🌍</span>
+        <div class="skill-title">Web</div>
+        <div class="skill-desc">HTML, CSS, JavaScript, développement front-end responsive</div>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar"><div class="skill-bar-fill" style="width:45%"></div></div>
+          <div class="skill-level">Notions</div>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-number">06</div>
+        <span class="skill-icon">🔬</span>
+        <div class="skill-title">IoT</div>
+        <div class="skill-desc">Microcontrôleurs, capteurs, protocoles de communication embarqués</div>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar"><div class="skill-bar-fill" style="width:40%"></div></div>
+          <div class="skill-level">Découverte</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── PROJETS ─── -->
+<section class="section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">Projets &amp; Expériences</div>
+      <h2 class="section-title">Ce que<br>j'ai <em>réalisé</em></h2>
+      <p class="section-sub">Les projets concrets qui illustrent mes compétences techniques.</p>
+    </div>
+    <div class="portfolio-grid">
+      <div class="project-card reveal">
+        <div class="project-num">01</div>
+        <div class="project-cat">IoT · Capteurs</div>
+        <div class="project-title">Détection de gaz</div>
+        <div class="project-desc">
+          Projet de baccalauréat : système IoT avec capteurs de gaz et microcontrôleur
+          pour sécuriser un espace public. Connexion de capteurs à un réseau et traitement des données.
+        </div>
+      </div>
+      <div class="project-card reveal" style="transition-delay:.1s">
+        <div class="project-num">02</div>
+        <div class="project-cat">Réseau · VLAN</div>
+        <div class="project-title">LAN / VLAN</div>
+        <div class="project-desc">
+          Création d'un réseau local avec segmentation par VLAN.
+          Configuration des équipements, adressage IP, services réseau et routage inter-VLAN.
+        </div>
+      </div>
+      <div class="project-card reveal" style="transition-delay:.2s">
+        <div class="project-num">03</div>
+        <div class="project-cat">Python · Automatisation</div>
+        <div class="project-title">Scripts Python</div>
+        <div class="project-desc">
+          Développement de scripts d'automatisation et d'analyse réseau en Python.
+          Traitement de données, manipulation de fichiers et interactions réseau.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">RM.portfolio</div>
+      <div class="footer-copy">© 2025 — Raphaël Macker · BUT Réseaux &amp; Télécommunications</div>
+      <a href="mentions.html" class="footer-link">Mentions légales</a>
+    </div>
+  </div>
 </footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
+const navToggle = document.getElementById('navToggle');
+const navLinks  = document.getElementById('navLinks');
+navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal, .skill-card, .timeline-item, .project-card').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
