@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Portfolio — Raphaël Macker</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <a class="nav-brand" href="index.html">
+    <span class="dot"></span>
+    RM.portfolio
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a class="nav-link" href="index.html">Accueil</a></li>
+    <li><a class="nav-link" href="cv.html">CV</a></li>
+    <li><a class="nav-link active" href="portfolio.html">Portfolio</a></li>
+    <li><a class="nav-link" href="bulletin.html">Bulletin</a></li>
+  </ul>
+  <div class="nav-toggle" id="navToggle">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-bg"><div class="page-hero-orb a"></div></div>
+  <div class="container">
+    <div class="page-hero-line">// Programme National BUT-RT</div>
+    <h1 class="page-hero-title">Portfolio<br>de compétences</h1>
+    <p class="page-hero-sub">5 compétences fondamentales · Projets associés · Semestre 1</p>
+  </div>
+</section>
+
+<!-- ─── COMPÉTENCES NAV ─── -->
+<section class="section" style="padding-bottom:0">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">Navigation rapide</div>
+      <h2 class="section-title">Compétences<br>du <em>Programme National</em></h2>
+      <p class="section-sub">Cliquez sur une compétence pour explorer les projets associés.</p>
+    </div>
+    <div class="portfolio-filter reveal" style="transition-delay:.2s">
+      <a href="#administrer" class="filter-btn active">🌐 Administrer</a>
+      <a href="#connecter" class="filter-btn">🔌 Connecter</a>
+      <a href="#programmer" class="filter-btn">💻 Programmer</a>
+      <a href="#securiser" class="filter-btn">🛡️ Sécuriser</a>
+      <a href="#surveiller" class="filter-btn">📡 Surveiller</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ADMINISTRER ─── -->
+<section class="section" id="administrer">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">Compétence 01</div>
+      <h2 class="section-title">Administrer</h2>
+      <p class="section-sub">Installer, configurer et gérer des systèmes et réseaux informatiques.</p>
+    </div>
+    <div class="portfolio-grid">
+      <div class="project-card reveal">
+        <div class="project-num">01</div>
+        <div class="project-cat">Réseau · Administration</div>
+        <div class="project-title">Réseau LAN</div>
+        <div class="project-desc">
+          Configuration complète de postes clients, adressage IP statique et dynamique (DHCP),
+          mise en place de services réseau essentiels. Administration des équipements actifs du réseau.
+        </div>
+        <div class="tags" style="margin-top:1rem">
+          <span class="tag">DHCP</span>
+          <span class="tag">IP</span>
+          <span class="tag">Services</span>
+        </div>
+      </div>
+      <div class="project-card reveal" style="transition-delay:.1s">
+        <div class="project-num">02</div>
+        <div class="project-cat">OS · Systèmes</div>
+        <div class="project-title">Administration Linux</div>
+        <div class="project-desc">
+          Gestion de systèmes d'exploitation Linux : installation, configuration des services,
+          gestion des utilisateurs et des droits, automatisation par scripts.
+        </div>
+        <div class="tags" style="margin-top:1rem">
+          <span class="tag">Linux</span>
+          <span class="tag">Shell</span>
+          <span class="tag">Services</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── CONNECTER ─── -->
+<section class="section" id="connecter">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">Compétence 02</div>
+      <h2 class="section-title">Connecter</h2>
+      <p class="section-sub">Relier des équipements et assurer l'interconnexion des réseaux.</p>
+    </div>
+    <div class="portfolio-grid">
+      <div class="project-card reveal">
+        <div class="project-num">01</div>
+        <div class="project-cat">Réseau · VLAN</div>
+        <div class="project-title">LAN / VLAN</div>
+        <div class="project-desc">
+          Interconnexion de machines avec segmentation réseau par VLAN.
+          Configuration des commutateurs, routage inter-VLAN et mise en place
+          d'une topologie réseau opérationnelle.
+        </div>
+        <div class="tags" style="margin-top:1rem">
+          <span class="tag">VLAN</span>
+          <span class="tag">Switch</span>
+          <span class="tag">Routage</span>
+        </div>
+      </div>
+      <div class="project-card reveal" style="transition-delay:.1s">
+        <div class="project-num">02</div>
+        <div class="project-cat">IoT · Capteurs</div>
+        <div class="project-title">Projet IoT — Gaz</div>
+        <div class="project-desc">
+          Connexion de capteurs de gaz et d'un microcontrôleur à un réseau.
+          Communication entre équipements hétérogènes, transmission des données capteur.
+        </div>
+        <div class="tags" style="margin-top:1rem">
+          <span class="tag">IoT</span>
+          <span class="tag">Capteurs</span>
+          <span class="tag">Microcontrôleur</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── PROGRAMMER ─── -->
+<section class="section" id="programmer">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">Compétence 03</div>
+      <h2 class="section-title">Programmer</h2>
+      <p class="section-sub">Développer du code, des scripts et des applications orientées réseau.</p>
+    </div>
+    <div class="portfolio-grid">
+      <div class="project-card reveal">
+        <div class="project-num">01</div>
+        <div class="project-cat">Python · Automatisation</div>
+        <div class="project-title">Scripts Python</div>
+        <div class="project-desc">
+          Développement de scripts Python pour l'automatisation de tâches réseau
+          et l'analyse de données. Manipulation de fichiers, traitements de données,
+          interactions avec des équipements réseau.
+        </div>
+        <div class="tags" style="margin-top:1rem">
+          <span class="tag">Python</span>
+          <span class="tag">Scripts</span>
+          <span class="tag">Automatisation</span>
+        </div>
+      </div>
+      <div class="project-card reveal" style="transition-delay:.1s">
+        <div class="project-num">02</div>
+        <div class="project-cat">Web · Front-end</div>
+        <div class="project-title">Portfolio Web</div>
+        <div class="project-desc">
+          Développement de ce portfolio en HTML, CSS et JavaScript.
+          Conception responsive, animations CSS, architecture multi-pages.
+        </div>
+        <div class="tags" style="margin-top:1rem">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── SECURISER ─── -->
+<section class="section" id="securiser">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">Compétence 04</div>
+      <h2 class="section-title">Sécuriser</h2>
+      <p class="section-sub">Protéger les systèmes et les réseaux contre les menaces et vulnérabilités.</p>
+    </div>
+    <div class="portfolio-grid">
+      <div class="project-card reveal">
+        <div class="project-num">01</div>
+        <div class="project-cat">Analyse · Trafic</div>
+        <div class="project-title">Analyse Wireshark</div>
+        <div class="project-desc">
+          Capture et analyse du trafic réseau avec Wireshark.
+          Détection de comportements anormaux, identification des protocoles,
+          filtrage et interprétation des trames réseau.
+        </div>
+        <div class="tags" style="margin-top:1rem">
+          <span class="tag">Wireshark</span>
+          <span class="tag">Captures</span>
+          <span class="tag">Protocoles</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── SURVEILLER ─── -->
+<section class="section" id="surveiller">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">Compétence 05</div>
+      <h2 class="section-title">Surveiller</h2>
+      <p class="section-sub">Observer et analyser les réseaux pour assurer leur bon fonctionnement.</p>
+    </div>
+    <div class="portfolio-grid">
+      <div class="project-card reveal">
+        <div class="project-num">01</div>
+        <div class="project-cat">Monitoring · Réseau</div>
+        <div class="project-title">Wireshark — Monitoring</div>
+        <div class="project-desc">
+          Surveillance du trafic réseau en temps réel. Capture et analyse continue
+          des flux, identification des anomalies, génération de rapports de trafic.
+        </div>
+        <div class="tags" style="margin-top:1rem">
+          <span class="tag">Monitoring</span>
+          <span class="tag">Temps réel</span>
+          <span class="tag">Analyse</span>
+        </div>
+      </div>
+      <div class="project-card reveal" style="transition-delay:.1s">
+        <div class="project-num">02</div>
+        <div class="project-cat">IoT · Environnement</div>
+        <div class="project-title">Capteurs de gaz</div>
+        <div class="project-desc">
+          Surveillance de la qualité de l'air via capteurs IoT.
+          Collecte continue des données, alertes en temps réel,
+          visualisation des mesures environnementales.
+        </div>
+        <div class="tags" style="margin-top:1rem">
+          <span class="tag">IoT</span>
+          <span class="tag">Capteurs</span>
+          <span class="tag">Données</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">RM.portfolio</div>
+      <div class="footer-copy">© 2025 — Raphaël Macker · BUT Réseaux &amp; Télécommunications</div>
+      <a href="mentions.html" class="footer-link">Mentions légales</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
+const navToggle = document.getElementById('navToggle');
+const navLinks  = document.getElementById('navLinks');
+navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+
+// Filter buttons
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal, .project-card').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
