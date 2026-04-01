@@ -9,169 +9,422 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <style>
-/* ── Sticky nav ── */
-.comp-nav {
-  display: flex;
-  gap: .5rem;
-  flex-wrap: wrap;
-  margin-bottom: 4rem;
-  position: sticky;
-  top: 70px;
-  z-index: 100;
-  background: rgba(4,8,16,.92);
-  backdrop-filter: blur(16px);
-  padding: 1rem 0;
-  border-bottom: 1px solid var(--border);
-}
-.comp-pill {
-  font-family: var(--font-mono);
-  font-size: .7rem;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  padding: .5rem 1.2rem;
-  border: 1px solid var(--border);
-  background: transparent;
-  color: var(--muted);
-  cursor: pointer;
-  text-decoration: none;
-  transition: all .2s;
-  white-space: nowrap;
-}
-.comp-pill:hover { border-color: var(--cyan); color: var(--cyan); }
-.comp-pill.c1.active { border-color:#00c8ff; color:#00c8ff; background:rgba(0,200,255,.06); }
-.comp-pill.c2.active { border-color:#00ff8c; color:#00ff8c; background:rgba(0,255,140,.06); }
-.comp-pill.c3.active { border-color:#a78bfa; color:#a78bfa; background:rgba(167,139,250,.06); }
-.comp-pill.c4.active { border-color:#f87171; color:#f87171; background:rgba(248,113,113,.06); }
-.comp-pill.c5.active { border-color:#fb923c; color:#fb923c; background:rgba(251,146,60,.06); }
-
-/* ── Compétence section ── */
-.comp-section { margin-bottom: 6rem; scroll-margin-top: 150px; }
-.comp-header {
+/* ══════════════════════════════
+   COMPETENCE CARDS (page)
+══════════════════════════════ */
+.comp-cards-grid {
   display: grid;
-  grid-template-columns: 90px 1fr;
-  gap: 2rem;
-  align-items: center;
-  margin-bottom: 2.5rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid var(--border);
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
 }
-.comp-number {
-  font-family: var(--font-display);
-  font-size: 5rem;
-  font-weight: 800;
-  line-height: 1;
-  opacity: .07;
-  text-align: right;
-}
-.comp-tag { font-family: var(--font-mono); font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; margin-bottom: .5rem; }
-.comp-title { font-family: var(--font-display); font-size: 2.2rem; font-weight: 800; letter-spacing: -1px; margin-bottom: .5rem; }
-.comp-desc { font-size: .9rem; color: var(--muted); max-width: 620px; line-height: 1.7; margin-bottom: 1rem; }
-.comp-badges { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .75rem; }
-.comp-badge { font-family: var(--font-mono); font-size: .62rem; letter-spacing: .05em; padding: .3rem .75rem; border: 1px solid; }
 
-/* color themes */
-.s1 .comp-tag,.s1 .comp-number{color:#00c8ff}
-.s1 .comp-badge{border-color:rgba(0,200,255,.3);color:#00c8ff;background:rgba(0,200,255,.05)}
-.s1 .proj-dot{background:#00c8ff;box-shadow:0 0 8px #00c8ff}
-.s1 .proj-card::after{background:linear-gradient(90deg,#00c8ff,transparent)}
-.s1 .proj-link{color:#00c8ff}
-
-.s2 .comp-tag,.s2 .comp-number{color:#00ff8c}
-.s2 .comp-badge{border-color:rgba(0,255,140,.3);color:#00ff8c;background:rgba(0,255,140,.05)}
-.s2 .proj-dot{background:#00ff8c;box-shadow:0 0 8px #00ff8c}
-.s2 .proj-card::after{background:linear-gradient(90deg,#00ff8c,transparent)}
-.s2 .proj-link{color:#00ff8c}
-
-.s3 .comp-tag,.s3 .comp-number{color:#a78bfa}
-.s3 .comp-badge{border-color:rgba(167,139,250,.3);color:#a78bfa;background:rgba(167,139,250,.05)}
-.s3 .proj-dot{background:#a78bfa;box-shadow:0 0 8px #a78bfa}
-.s3 .proj-card::after{background:linear-gradient(90deg,#a78bfa,transparent)}
-.s3 .proj-link{color:#a78bfa}
-
-.s4 .comp-tag,.s4 .comp-number{color:#f87171}
-.s4 .comp-badge{border-color:rgba(248,113,113,.3);color:#f87171;background:rgba(248,113,113,.05)}
-.s4 .proj-dot{background:#f87171;box-shadow:0 0 8px #f87171}
-.s4 .proj-card::after{background:linear-gradient(90deg,#f87171,transparent)}
-.s4 .proj-link{color:#f87171}
-
-.s5 .comp-tag,.s5 .comp-number{color:#fb923c}
-.s5 .comp-badge{border-color:rgba(251,146,60,.3);color:#fb923c;background:rgba(251,146,60,.05)}
-.s5 .proj-dot{background:#fb923c;box-shadow:0 0 8px #fb923c}
-.s5 .proj-card::after{background:linear-gradient(90deg,#fb923c,transparent)}
-.s5 .proj-link{color:#fb923c}
-
-/* ── Project cards ── */
-.proj-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-  gap: 1.5px;
-  background: var(--border);
-}
-.proj-card {
-  background: var(--bg);
-  padding: 2rem;
+.comp-card {
   position: relative;
+  padding: 2.5rem 2rem 2rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
   overflow: hidden;
-  transition: background .3s;
-  text-decoration: none;
-  color: inherit;
-  display: flex;
-  flex-direction: column;
+  transition: transform .25s, box-shadow .25s, border-color .25s;
+  text-align: left;
 }
-.proj-card::after {
+.comp-card::before {
   content: '';
   position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 2px;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform .4s;
+  top: 0; left: 0; right: 0;
+  height: 3px;
 }
-.proj-card:hover { background: var(--surface); }
-.proj-card:hover::after { transform: scaleX(1); }
-.proj-card.no-link { cursor: default; }
-.proj-card.no-link:hover { background: var(--bg); }
-.proj-card.no-link::after { display: none; }
+.comp-card.c1::before { background: #00c8ff; }
+.comp-card.c2::before { background: #00ff8c; }
+.comp-card.c3::before { background: #a78bfa; }
+.comp-card.c4::before { background: #f87171; }
+.comp-card.c5::before { background: #fb923c; }
 
-.proj-dot { width: 6px; height: 6px; border-radius: 50%; margin-bottom: 1.25rem; flex-shrink: 0; }
-.proj-sae { font-family: var(--font-mono); font-size: .62rem; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); margin-bottom: .4rem; }
-.proj-title { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; margin-bottom: .6rem; }
-.proj-desc { font-size: .83rem; color: var(--muted); line-height: 1.65; flex: 1; margin-bottom: 1.25rem; }
+.comp-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.4); }
+.comp-card.c1:hover { border-color: rgba(0,200,255,.4); box-shadow: 0 16px 40px rgba(0,200,255,.08); }
+.comp-card.c2:hover { border-color: rgba(0,255,140,.4); box-shadow: 0 16px 40px rgba(0,255,140,.08); }
+.comp-card.c3:hover { border-color: rgba(167,139,250,.4); box-shadow: 0 16px 40px rgba(167,139,250,.08); }
+.comp-card.c4:hover { border-color: rgba(248,113,113,.4); box-shadow: 0 16px 40px rgba(248,113,113,.08); }
+.comp-card.c5:hover { border-color: rgba(251,146,60,.4); box-shadow: 0 16px 40px rgba(251,146,60,.08); }
 
-.proj-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
-.proj-tags { display: flex; gap: .35rem; flex-wrap: wrap; }
-.proj-tag-sm { font-family: var(--font-mono); font-size: .58rem; letter-spacing: .05em; padding: .2rem .5rem; border: 1px solid var(--border); color: var(--muted); }
-
-.proj-link {
+.comp-card-num {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1;
+  opacity: .06;
+  position: absolute;
+  top: 1rem; right: 1.5rem;
+}
+.comp-card-tag {
   font-family: var(--font-mono);
-  font-size: .68rem;
-  letter-spacing: .08em;
-  display: inline-flex;
+  font-size: .6rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  margin-bottom: .5rem;
+}
+.comp-card.c1 .comp-card-tag { color: #00c8ff; }
+.comp-card.c2 .comp-card-tag { color: #00ff8c; }
+.comp-card.c3 .comp-card-tag { color: #a78bfa; }
+.comp-card.c4 .comp-card-tag { color: #f87171; }
+.comp-card.c5 .comp-card-tag { color: #fb923c; }
+
+.comp-card-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+}
+.comp-card-sub {
+  font-size: .8rem;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+.comp-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+.comp-card-count {
+  font-family: var(--font-mono);
+  font-size: .65rem;
+  color: var(--muted);
+}
+.comp-card-arrow {
+  font-family: var(--font-mono);
+  font-size: .65rem;
+  letter-spacing: .1em;
+  display: flex;
   align-items: center;
   gap: .4rem;
   transition: gap .2s;
-  white-space: nowrap;
 }
-.proj-card:hover .proj-link { gap: .65rem; }
-.proj-link-soon {
-  font-family: var(--font-mono); font-size: .65rem; letter-spacing: .1em; text-transform: uppercase;
-  color: var(--muted); border: 1px dashed var(--border); padding: .25rem .6rem;
+.comp-card.c1 .comp-card-arrow { color: #00c8ff; }
+.comp-card.c2 .comp-card-arrow { color: #00ff8c; }
+.comp-card.c3 .comp-card-arrow { color: #a78bfa; }
+.comp-card.c4 .comp-card-arrow { color: #f87171; }
+.comp-card.c5 .comp-card-arrow { color: #fb923c; }
+.comp-card:hover .comp-card-arrow { gap: .7rem; }
+
+/* ══════════════════════════════
+   MODAL OVERLAY
+══════════════════════════════ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(4,8,16,.88);
+  backdrop-filter: blur(12px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s;
+}
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: all;
 }
 
-/* shared proj indicator */
-.proj-shared {
-  position: absolute;
-  top: 1rem; right: 1rem;
+.modal {
+  width: 100%;
+  max-width: 900px;
+  max-height: 88vh;
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  overflow-y: auto;
+  position: relative;
+  transform: translateY(24px) scale(.97);
+  transition: transform .35s cubic-bezier(.16,1,.3,1);
+  scrollbar-width: thin;
+  scrollbar-color: var(--cyan2) var(--bg);
+}
+.modal-overlay.open .modal {
+  transform: translateY(0) scale(1);
+}
+
+/* color accent top border */
+.modal.c1 { border-top: 3px solid #00c8ff; }
+.modal.c2 { border-top: 3px solid #00ff8c; }
+.modal.c3 { border-top: 3px solid #a78bfa; }
+.modal.c4 { border-top: 3px solid #f87171; }
+.modal.c5 { border-top: 3px solid #fb923c; }
+
+.modal-close {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+}
+.modal-close-label {
   font-family: var(--font-mono);
-  font-size: .58rem;
-  letter-spacing: .08em;
+  font-size: .62rem;
+  letter-spacing: .15em;
   text-transform: uppercase;
   color: var(--muted);
+}
+.modal-close-btn {
+  background: none;
   border: 1px solid var(--border);
-  padding: .2rem .5rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: .7rem;
+  padding: .35rem .9rem;
+  cursor: pointer;
+  transition: all .2s;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.modal-close-btn:hover { border-color: var(--text); color: var(--text); }
+
+/* Modal hero */
+.modal-hero {
+  padding: 2.5rem 2rem 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.modal-hero-tag {
+  font-family: var(--font-mono);
+  font-size: .62rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  margin-bottom: .6rem;
+}
+.modal.c1 .modal-hero-tag { color: #00c8ff; }
+.modal.c2 .modal-hero-tag { color: #00ff8c; }
+.modal.c3 .modal-hero-tag { color: #a78bfa; }
+.modal.c4 .modal-hero-tag { color: #f87171; }
+.modal.c5 .modal-hero-tag { color: #fb923c; }
+
+.modal-hero-title {
+  font-family: var(--font-display);
+  font-size: 2.8rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin-bottom: .5rem;
+}
+.modal-hero-desc {
+  font-size: .88rem;
+  color: var(--muted);
+  max-width: 600px;
+  line-height: 1.7;
 }
 
-/* ── Parcours ── */
+/* CE list */
+.modal-ce-section {
+  padding: 2rem;
+}
+.modal-ce-section-title {
+  font-family: var(--font-mono);
+  font-size: .62rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+}
+.modal-ce-section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.ce-list {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+}
+
+.ce-item {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  overflow: hidden;
+  transition: border-color .2s;
+  cursor: pointer;
+}
+.modal.c1 .ce-item:hover { border-color: rgba(0,200,255,.35); }
+.modal.c2 .ce-item:hover { border-color: rgba(0,255,140,.35); }
+.modal.c3 .ce-item:hover { border-color: rgba(167,139,250,.35); }
+.modal.c4 .ce-item:hover { border-color: rgba(248,113,113,.35); }
+.modal.c5 .ce-item:hover { border-color: rgba(251,146,60,.35); }
+
+.ce-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  gap: 1rem;
+  user-select: none;
+}
+.ce-header-left {
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  flex: 1;
+}
+.ce-code {
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  padding: .3rem .6rem;
+  border: 1px solid;
+  flex-shrink: 0;
+}
+.modal.c1 .ce-code { border-color: rgba(0,200,255,.3); color: #00c8ff; background: rgba(0,200,255,.06); }
+.modal.c2 .ce-code { border-color: rgba(0,255,140,.3); color: #00ff8c; background: rgba(0,255,140,.06); }
+.modal.c3 .ce-code { border-color: rgba(167,139,250,.3); color: #a78bfa; background: rgba(167,139,250,.06); }
+.modal.c4 .ce-code { border-color: rgba(248,113,113,.3); color: #f87171; background: rgba(248,113,113,.06); }
+.modal.c5 .ce-code { border-color: rgba(251,146,60,.3); color: #fb923c; background: rgba(251,146,60,.06); }
+
+.ce-label {
+  font-size: .88rem;
+  color: var(--text);
+  line-height: 1.4;
+}
+.ce-chevron {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  transition: transform .25s;
+  color: var(--muted);
+}
+.ce-item.open .ce-chevron { transform: rotate(180deg); }
+
+/* CE body (projects) */
+.ce-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .35s cubic-bezier(.4,0,.2,1);
+  border-top: 0px solid var(--border);
+}
+.ce-item.open .ce-body {
+  max-height: 600px;
+  border-top: 1px solid var(--border);
+}
+
+.ce-projects {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+}
+.ce-no-project {
+  font-size: .8rem;
+  color: var(--muted);
+  font-style: italic;
+  padding: .5rem 0;
+}
+
+/* Project card inside CE */
+.ce-proj {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 1.25rem;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: background .2s, border-color .2s;
+}
+.ce-proj:hover { background: var(--surface2); }
+.modal.c1 .ce-proj:hover { border-color: rgba(0,200,255,.3); }
+.modal.c2 .ce-proj:hover { border-color: rgba(0,255,140,.3); }
+.modal.c3 .ce-proj:hover { border-color: rgba(167,139,250,.3); }
+.modal.c4 .ce-proj:hover { border-color: rgba(248,113,113,.3); }
+.modal.c5 .ce-proj:hover { border-color: rgba(251,146,60,.3); }
+
+.ce-proj-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: .75rem;
+  flex-wrap: wrap;
+}
+.ce-proj-sae {
+  font-family: var(--font-mono);
+  font-size: .6rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.ce-proj-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: .4rem;
+}
+.ce-proj-desc {
+  font-size: .8rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: .9rem;
+}
+.ce-proj-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+.ce-proj-tags { display: flex; gap: .3rem; flex-wrap: wrap; }
+.ce-proj-tag {
+  font-family: var(--font-mono);
+  font-size: .55rem;
+  letter-spacing: .05em;
+  padding: .18rem .45rem;
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+.ce-proj-link {
+  font-family: var(--font-mono);
+  font-size: .65rem;
+  letter-spacing: .08em;
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  white-space: nowrap;
+  transition: gap .2s;
+}
+.ce-proj:hover .ce-proj-link { gap: .6rem; }
+.modal.c1 .ce-proj-link { color: #00c8ff; }
+.modal.c2 .ce-proj-link { color: #00ff8c; }
+.modal.c3 .ce-proj-link { color: #a78bfa; }
+.modal.c4 .ce-proj-link { color: #f87171; }
+.modal.c5 .ce-proj-link { color: #fb923c; }
+
+.ce-proj-link-soon {
+  font-family: var(--font-mono);
+  font-size: .62rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px dashed var(--border);
+  padding: .22rem .55rem;
+}
+
+/* scrollbar in modal */
+.modal::-webkit-scrollbar { width: 3px; }
+.modal::-webkit-scrollbar-track { background: var(--bg2); }
+.modal::-webkit-scrollbar-thumb { background: var(--cyan2); }
+
+/* Parcours section */
 .parcours-section { padding: 5rem 0; background: var(--bg2); border-top: 1px solid var(--border); }
 .parcours-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px; background: var(--border); margin-top: 3rem; }
 .parcours-card { background: var(--bg); padding: 2.5rem; position: relative; overflow: hidden; transition: background .3s; }
@@ -191,10 +444,9 @@
 .parcours-card.rom   .parcours-comp-item::before { background: #00ff8c; }
 
 @media(max-width:700px){
-  .comp-header{grid-template-columns:1fr;}
-  .comp-number{font-size:3rem;text-align:left;}
+  .modal-hero-title { font-size: 2rem; }
   .parcours-grid{grid-template-columns:1fr;}
-  .comp-title{font-size:1.7rem;}
+  .comp-cards-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -221,307 +473,81 @@
   </div>
 </section>
 
-<!-- MAIN -->
+<!-- COMPETENCES CARDS -->
 <section class="section">
   <div class="container">
 
-    <!-- Sticky nav -->
-    <div class="comp-nav">
-      <a href="#administrer" class="comp-pill c1 active">🌐 Administrer</a>
-      <a href="#connecter"   class="comp-pill c2">🔌 Connecter</a>
-      <a href="#programmer"  class="comp-pill c3">💻 Programmer</a>
-      <a href="#securiser"   class="comp-pill c4">🛡️ Sécuriser</a>
-      <a href="#surveiller"  class="comp-pill c5">📡 Surveiller</a>
+    <div class="reveal">
+      <div class="section-tag">Programme National BUT R&T</div>
+      <h2 class="section-title">5 Compétences<br><em>cliquez pour explorer</em></h2>
+      <p class="section-sub">Chaque compétence regroupe des éléments constitutifs (CE) auxquels sont associés des projets SAE concrets.</p>
     </div>
 
-    <!-- ═══════════════════════════════════
-         1 — ADMINISTRER
-    ═══════════════════════════════════ -->
-    <div class="comp-section s1 reveal" id="administrer">
-      <div class="comp-header">
-        <div class="comp-number">01</div>
-        <div>
-          <div class="comp-tag">Compétence 1 · UE11</div>
-          <h2 class="comp-title">Administrer</h2>
-          <p class="comp-desc">
-            Administrer les réseaux et systèmes d'une organisation : installer, configurer et superviser
-            les équipements et services réseau pour maintenir une infrastructure opérationnelle et disponible.
-          </p>
-          <div class="comp-badges">
-            <span class="comp-badge">Niveau 1 — S1/S2</span>
-            <span class="comp-badge">Configuration équipements</span>
-            <span class="comp-badge">Services réseau</span>
-            <span class="comp-badge">Supervision</span>
-          </div>
+    <div class="comp-cards-grid reveal" style="transition-delay:.15s">
+
+      <!-- C1 — ADMINISTRER -->
+      <button class="comp-card c1" onclick="openModal('administrer')">
+        <div class="comp-card-num">01</div>
+        <div class="comp-card-tag">Compétence 1 · UE11</div>
+        <div class="comp-card-title">Administrer</div>
+        <div class="comp-card-sub">Administrer les réseaux et l'Internet</div>
+        <div class="comp-card-meta">
+          <span class="comp-card-count">5 CE · 1 SAE</span>
+          <span class="comp-card-arrow">Explorer <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
         </div>
-      </div>
-      <div class="proj-grid">
-        <!-- SAE1.02 -->
-        <a href="#" class="proj-card no-link">
-          <div class="proj-dot"></div>
-          <div class="proj-sae">SAE 1.02 — S1</div>
-          <div class="proj-title">S'initier aux réseaux informatiques</div>
-          <div class="proj-desc">
-            Mise en œuvre complète d'un réseau : configuration de postes de travail,
-            équipements intermédiaires, adressage IPv4, services réseau. Projet mené en autonomie
-            avec livraisons par fonctionnalités.
-          </div>
-          <div class="proj-footer">
-            <div class="proj-tags">
-              <span class="proj-tag-sm">IPv4</span>
-              <span class="proj-tag-sm">DHCP</span>
-              <span class="proj-tag-sm">LAN</span>
-              <span class="proj-tag-sm">Équipements réseau</span>
-            </div>
-            <span class="proj-link-soon">Lien à venir</span>
-          </div>
-        </a>
-      </div>
-    </div>
+      </button>
 
-    <!-- ═══════════════════════════════════
-         2 — CONNECTER
-    ═══════════════════════════════════ -->
-    <div class="comp-section s2 reveal" style="transition-delay:.05s" id="connecter">
-      <div class="comp-header">
-        <div class="comp-number">02</div>
-        <div>
-          <div class="comp-tag">Compétence 2 · UE12</div>
-          <h2 class="comp-title">Connecter</h2>
-          <p class="comp-desc">
-            Connecter les entreprises et les usagers : déployer et maintenir des infrastructures
-            de communication filaires et sans fil, en intégrant les contraintes physiques et logiques des réseaux.
-          </p>
-          <div class="comp-badges">
-            <span class="comp-badge">Niveau 1 — S1/S2</span>
-            <span class="comp-badge">Câblage · Cat6 · Fibre</span>
-            <span class="comp-badge">LAN / WAN</span>
-            <span class="comp-badge">Liaisons physiques</span>
-          </div>
+      <!-- C2 — CONNECTER -->
+      <button class="comp-card c2" onclick="openModal('connecter')">
+        <div class="comp-card-num">02</div>
+        <div class="comp-card-tag">Compétence 2 · UE12</div>
+        <div class="comp-card-title">Connecter</div>
+        <div class="comp-card-sub">Connecter les entreprises et les usagers</div>
+        <div class="comp-card-meta">
+          <span class="comp-card-count">4 CE · 2 SAE</span>
+          <span class="comp-card-arrow">Explorer <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
         </div>
-      </div>
-      <div class="proj-grid">
-        <!-- SAE1.02 aussi -->
-        <a href="#" class="proj-card no-link">
-          <span class="proj-shared">aussi dans Administrer</span>
-          <div class="proj-dot"></div>
-          <div class="proj-sae">SAE 1.02 — S1</div>
-          <div class="proj-title">S'initier aux réseaux informatiques</div>
-          <div class="proj-desc">
-            Interconnexion physique et logique des équipements d'un réseau local.
-            Compréhension des interactions entre les constituants d'une infrastructure réseau.
-          </div>
-          <div class="proj-footer">
-            <div class="proj-tags">
-              <span class="proj-tag-sm">LAN</span>
-              <span class="proj-tag-sm">Topologie</span>
-              <span class="proj-tag-sm">Câblage</span>
-            </div>
-            <span class="proj-link-soon">Lien à venir</span>
-          </div>
-        </a>
-        <!-- SAE1.03 -->
-        <a href="#" class="proj-card no-link">
-          <div class="proj-dot"></div>
-          <div class="proj-sae">SAE 1.03 — S1</div>
-          <div class="proj-title">Découvrir un système de transmission</div>
-          <div class="proj-desc">
-            Caractérisation d'une liaison physique (câble Cat6 Draka) : atténuation et retard.
-            Simulations sur LTspice et Simulink pour modéliser le comportement d'une ligne
-            de transmission. Mesures sur diviseur résistif et lignes RLCG.
-          </div>
-          <div class="proj-footer">
-            <div class="proj-tags">
-              <span class="proj-tag-sm">LTspice</span>
-              <span class="proj-tag-sm">Simulink</span>
-              <span class="proj-tag-sm">Cat6</span>
-              <span class="proj-tag-sm">Atténuation</span>
-            </div>
-            <span class="proj-link-soon">Lien à venir</span>
-          </div>
-        </a>
-      </div>
-    </div>
+      </button>
 
-    <!-- ═══════════════════════════════════
-         3 — PROGRAMMER
-    ═══════════════════════════════════ -->
-    <div class="comp-section s3 reveal" style="transition-delay:.1s" id="programmer">
-      <div class="comp-header">
-        <div class="comp-number">03</div>
-        <div>
-          <div class="comp-tag">Compétence 3 · UE13</div>
-          <h2 class="comp-title">Programmer</h2>
-          <p class="comp-desc">
-            Créer des outils et applications pour les réseaux et télécommunications :
-            scripts d'automatisation, traitement de données, développement web et interfaces graphiques.
-          </p>
-          <div class="comp-badges">
-            <span class="comp-badge">Niveau 1 — S1/S2</span>
-            <span class="comp-badge">Python · Scripts</span>
-            <span class="comp-badge">HTML / CSS / JS</span>
-            <span class="comp-badge">JSON · CSV</span>
-          </div>
+      <!-- C3 — PROGRAMMER -->
+      <button class="comp-card c3" onclick="openModal('programmer')">
+        <div class="comp-card-num">03</div>
+        <div class="comp-card-tag">Compétence 3 · UE13</div>
+        <div class="comp-card-title">Programmer</div>
+        <div class="comp-card-sub">Créer des outils et applications pour les R&T</div>
+        <div class="comp-card-meta">
+          <span class="comp-card-count">5 CE · 2 SAE</span>
+          <span class="comp-card-arrow">Explorer <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
         </div>
-      </div>
-      <div class="proj-grid">
-        <!-- SAE1.04 -->
-        <a href="#" class="proj-card no-link">
-          <div class="proj-dot"></div>
-          <div class="proj-sae">SAE 1.04 — S1</div>
-          <div class="proj-title">Se présenter sur Internet</div>
-          <div class="proj-desc">
-            Développement de ce portfolio personnel en HTML/CSS/JS, hébergé sur GitHub Pages.
-            Site responsive (3 affichages), menu de navigation, CV intégré, portfolio de compétences
-            et mentions légales. Réalisé individuellement sans bibliothèques locales.
-          </div>
-          <div class="proj-footer">
-            <div class="proj-tags">
-              <span class="proj-tag-sm">HTML</span>
-              <span class="proj-tag-sm">CSS</span>
-              <span class="proj-tag-sm">JavaScript</span>
-              <span class="proj-tag-sm">GitHub Pages</span>
-              <span class="proj-tag-sm">Responsive</span>
-            </div>
-            <span class="proj-link" style="margin-top:.1rem">
-              Ce site
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </span>
-          </div>
-        </a>
-        <!-- SAE1.05 -->
-        <a href="https://gitlab.univ-artois.fr/raphael_macker/sae-1.05" class="proj-card" target="_blank">
-          <div class="proj-dot"></div>
-          <div class="proj-sae">SAE 1.05 — S1</div>
-          <div class="proj-title">Traiter des données</div>
-          <div class="proj-desc">
-            Script Python automatisé pour récupérer des données CSV depuis data.gouv.fr,
-            les agréger (moyennes, maximum, filtrage), les convertir en JSON et les transmettre
-            à un site web pour affichage graphique via quickchart.io. Projet en équipe, stocké sur GitLab.
-          </div>
-          <div class="proj-footer">
-            <div class="proj-tags">
-              <span class="proj-tag-sm">Python</span>
-              <span class="proj-tag-sm">JSON</span>
-              <span class="proj-tag-sm">CSV</span>
-              <span class="proj-tag-sm">data.gouv.fr</span>
-              <span class="proj-tag-sm">GitLab</span>
-            </div>
-            <span class="proj-link" style="margin-top:.1rem">
-  Site Personnel GitLab
-  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-    <line x1="5" y1="12" x2="19" y2="12"/>
-    <polyline points="12 5 19 12 12 19"/>
-  </svg>
-</span>
-          </div>
-        </a>
-      </div>
-    </div>
+      </button>
 
-    <!-- ═══════════════════════════════════
-         4 — SÉCURISER
-    ═══════════════════════════════════ -->
-    <div class="comp-section s4 reveal" style="transition-delay:.15s" id="securiser">
-      <div class="comp-header">
-        <div class="comp-number">04</div>
-        <div>
-          <div class="comp-tag">Compétence 4 · Parcours Cybersécurité</div>
-          <h2 class="comp-title">Sécuriser</h2>
-          <p class="comp-desc">
-            Sécuriser les réseaux et systèmes d'information : mettre en œuvre des politiques de sécurité,
-            identifier les risques, sensibiliser les utilisateurs et protéger les infrastructures contre les menaces.
-          </p>
-          <div class="comp-badges">
-            <span class="comp-badge">Parcours Cybersécurité</span>
-            <span class="comp-badge">ANSSI · Hygiène numérique</span>
-            <span class="comp-badge">Analyse de risques</span>
-            <span class="comp-badge">Bonnes pratiques</span>
-          </div>
+      <!-- C4 — SÉCURISER -->
+      <button class="comp-card c4" onclick="openModal('securiser')">
+        <div class="comp-card-num">04</div>
+        <div class="comp-card-tag">Compétence 4 · Cyber</div>
+        <div class="comp-card-title">Sécuriser</div>
+        <div class="comp-card-sub">Administrer un système d'information sécurisé</div>
+        <div class="comp-card-meta">
+          <span class="comp-card-count">5 CE · 1 SAE</span>
+          <span class="comp-card-arrow">Explorer <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
         </div>
-      </div>
-      <div class="proj-grid">
-        <!-- SAE1.01 -->
-        <a href="#" class="proj-card no-link">
-          <div class="proj-dot"></div>
-          <div class="proj-sae">SAE 1.01 — S1</div>
-          <div class="proj-title">Sensibilisation au risque numérique</div>
-          <div class="proj-desc">
-            En tant que RSSI fictif, élaboration d'un diaporama de sensibilisation au risque numérique
-            pour l'ensemble du personnel d'une entreprise : présentation des 4 bonnes pratiques
-            prioritaires, risques associés et contre-mesures. MOOC ANSSI complété
-            (SecNumAcadémie) + cours Cisco Netacad « Introduction à la cybersécurité ».
-          </div>
-          <div class="proj-footer">
-            <div class="proj-tags">
-              <span class="proj-tag-sm">ANSSI</span>
-              <span class="proj-tag-sm">Cyberrisques</span>
-              <span class="proj-tag-sm">MOOC SecNum</span>
-              <span class="proj-tag-sm">Cisco Netacad</span>
-              <span class="proj-tag-sm">Présentation orale</span>
-            </div>
-            <span class="proj-link-soon">Lien à venir</span>
-          </div>
-        </a>
-      </div>
-    </div>
+      </button>
 
-    <!-- ═══════════════════════════════════
-         5 — SURVEILLER
-    ═══════════════════════════════════ -->
-    <div class="comp-section s5 reveal" style="transition-delay:.2s" id="surveiller">
-      <div class="comp-header">
-        <div class="comp-number">05</div>
-        <div>
-          <div class="comp-tag">Compétence 5 · Parcours ROM</div>
-          <h2 class="comp-title">Surveiller</h2>
-          <p class="comp-desc">
-            Surveiller un réseau et les services associés : collecter et analyser des données,
-            mettre en place des outils de supervision et assurer la continuité de service des infrastructures.
-          </p>
-          <div class="comp-badges">
-            <span class="comp-badge">Parcours ROM</span>
-            <span class="comp-badge">Collecte de données</span>
-            <span class="comp-badge">Visualisation</span>
-            <span class="comp-badge">Automatisation</span>
-          </div>
+      <!-- C5 — SURVEILLER -->
+      <button class="comp-card c5" onclick="openModal('surveiller')">
+        <div class="comp-card-num">05</div>
+        <div class="comp-card-tag">Compétence 5 · ROM</div>
+        <div class="comp-card-title">Surveiller</div>
+        <div class="comp-card-sub">Surveiller un système d'information sécurisé</div>
+        <div class="comp-card-meta">
+          <span class="comp-card-count">6 CE · 1 SAE</span>
+          <span class="comp-card-arrow">Explorer <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
         </div>
-      </div>
-      <div class="proj-grid">
-        <!-- SAE1.05 aussi -->
-         <a href="https://gitlab.univ-artois.fr/raphael_macker/sae-1.05" class="proj-card" target="_blank">
-          <span class="proj-shared">aussi dans Programmer</span>
-          <div class="proj-dot"></div>
-          <div class="proj-sae">SAE 1.05 — S1</div>
-          <div class="proj-title">Traiter des données</div>
-          <div class="proj-desc">
-            Collecte automatisée de données réseau/environnementales depuis des sources ouvertes (data.gouv.fr),
-            agrégation statistique, transformation et transmission vers un tableau de bord web.
-            Démontre la capacité à surveiller et visualiser des indicateurs en temps réel.
-          </div>
-          <div class="proj-footer">
-            <div class="proj-tags">
-              <span class="proj-tag-sm">Python</span>
-              <span class="proj-tag-sm">Open Data</span>
-              <span class="proj-tag-sm">Visualisation</span>
-              <span class="proj-tag-sm">Automatisation</span>
-            </div>
-            <span class="proj-link" style="margin-top:.1rem">
-  Site Personnel GitLab
-  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-    <line x1="5" y1="12" x2="19" y2="12"/>
-    <polyline points="12 5 19 12 12 19"/>
-  </svg>
-</span>
-          </div>
-        </a>
-      </div>
-    </div>
+      </button>
 
-  </div><!-- /container -->
+    </div>
+  </div>
 </section>
-
-<div class="divider"></div>
 
 <!-- PARCOURS -->
 <section class="parcours-section" id="parcours">
@@ -576,28 +602,441 @@
   </div>
 </footer>
 
+<!-- ══════════════════════════════════════════════════
+     MODAL OVERLAY
+══════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal" id="modal">
+    <!-- injected by JS -->
+  </div>
+</div>
+
 <script>
+/* ─── Data ─── */
+const COMPETENCES = {
+  administrer: {
+    label: 'Compétence 1 · UE11',
+    title: 'Administrer',
+    desc: 'Administrer les réseaux et systèmes d\'une organisation : installer, configurer et superviser les équipements et services réseau pour maintenir une infrastructure opérationnelle et disponible.',
+    colorClass: 'c1',
+    ce: [
+      {
+        code: 'CE1.01',
+        label: 'en choisissant les solutions et technologies réseaux adaptées',
+        projects: [
+          {
+            sae: 'SAE 1.02 — S1',
+            title: 'S\'initier aux réseaux informatiques',
+            desc: 'Mise en œuvre complète d\'un réseau : configuration de postes de travail, équipements intermédiaires, adressage IPv4, services réseau. Choix des technologies adaptées au cahier des charges.',
+            tags: ['IPv4', 'DHCP', 'LAN', 'Équipements réseau'],
+            link: null
+          }
+        ]
+      },
+      {
+        code: 'CE1.02',
+        label: 'en respectant les principes fondamentaux de la sécurité informatique',
+        projects: [
+          {
+            sae: 'SAE 1.02 — S1',
+            title: 'S\'initier aux réseaux informatiques',
+            desc: 'Application des bonnes pratiques de sécurité lors de la configuration des équipements réseau : gestion des accès, segmentation, règles de filtrage de base.',
+            tags: ['IPv4', 'DHCP', 'LAN', 'Sécurité'],
+            link: null
+          }
+        ]
+      },
+      {
+        code: 'CE1.03',
+        label: 'en utilisant une approche rigoureuse pour la résolution des dysfonctionnements',
+        projects: [
+          {
+            sae: 'SAE 1.02 — S1',
+            title: 'S\'initier aux réseaux informatiques',
+            desc: 'Diagnostic et résolution méthodique des problèmes rencontrés lors de la mise en place du réseau. Documentation des incidents et des solutions apportées.',
+            tags: ['Dépannage', 'Diagnostic', 'Documentation'],
+            link: null
+          }
+        ]
+      },
+      {
+        code: 'CE1.04',
+        label: 'en respectant les règles métiers',
+        projects: []
+      },
+      {
+        code: 'CE1.05',
+        label: 'en assurant une veille technologique',
+        projects: []
+      }
+    ]
+  },
+
+  connecter: {
+    label: 'Compétence 2 · UE12',
+    title: 'Connecter',
+    desc: 'Connecter les entreprises et les usagers : déployer et maintenir des infrastructures de communication filaires et sans fil, en intégrant les contraintes physiques et logiques des réseaux.',
+    colorClass: 'c2',
+    ce: [
+      {
+        code: 'CE2.01',
+        label: 'en communiquant avec le client et les différents acteurs impliqués, parfois en anglais',
+        projects: [
+          {
+            sae: 'SAE 1.02 — S1',
+            title: 'S\'initier aux réseaux informatiques',
+            desc: 'Communication avec l\'équipe et rédaction de livrables techniques. Utilisation de la terminologie réseau en français et en anglais.',
+            tags: ['Documentation', 'Communication', 'Anglais technique'],
+            link: null
+          }
+        ]
+      },
+      {
+        code: 'CE2.02',
+        label: 'en faisant preuve d\'une démarche scientifique',
+        projects: [
+          {
+            sae: 'SAE 1.03 — S1',
+            title: 'Découvrir un système de transmission',
+            desc: 'Caractérisation d\'une liaison physique (câble Cat6 Draka) : mesures d\'atténuation et de retard. Simulations sur LTspice et Simulink pour modéliser le comportement d\'une ligne de transmission.',
+            tags: ['LTspice', 'Simulink', 'Cat6', 'Mesures'],
+            link: null
+          }
+        ]
+      },
+      {
+        code: 'CE2.03',
+        label: 'en choisissant les solutions et technologies adaptées',
+        projects: [
+          {
+            sae: 'SAE 1.02 — S1',
+            title: 'S\'initier aux réseaux informatiques',
+            desc: 'Interconnexion physique et logique des équipements d\'un réseau local. Compréhension des interactions entre les constituants d\'une infrastructure réseau.',
+            tags: ['LAN', 'Topologie', 'Câblage'],
+            link: null
+          }
+        ]
+      },
+      {
+        code: 'CE2.04',
+        label: 'en proposant des solutions respectueuses de l\'environnement',
+        projects: []
+      }
+    ]
+  },
+
+  programmer: {
+    label: 'Compétence 3 · UE13',
+    title: 'Programmer',
+    desc: 'Créer des outils et applications pour les réseaux et télécommunications : scripts d\'automatisation, traitement de données, développement web et interfaces graphiques.',
+    colorClass: 'c3',
+    ce: [
+      {
+        code: 'CE3.01',
+        label: 'en étant à l\'écoute des besoins du client',
+        projects: [
+          {
+            sae: 'SAE 1.04 — S1',
+            title: 'Se présenter sur Internet',
+            desc: 'Développement du portfolio personnel en HTML/CSS/JS en répondant aux exigences du cahier des charges : 3 affichages responsive, menu de navigation, CV intégré, portfolio de compétences.',
+            tags: ['HTML', 'CSS', 'JavaScript', 'Responsive'],
+            link: '#'
+          }
+        ]
+      },
+      {
+        code: 'CE3.02',
+        label: 'en documentant le travail réalisé',
+        projects: [
+          {
+            sae: 'SAE 1.05 — S1',
+            title: 'Traiter des données',
+            desc: 'Script Python documenté pour récupérer des données CSV depuis data.gouv.fr, les agréger et les transmettre à un site web. README complet sur GitLab.',
+            tags: ['Python', 'Documentation', 'GitLab'],
+            link: 'https://gitlab.univ-artois.fr/raphael_macker/sae-1.05'
+          }
+        ]
+      },
+      {
+        code: 'CE3.03',
+        label: 'en utilisant les outils numériques à bon escient',
+        projects: [
+          {
+            sae: 'SAE 1.05 — S1',
+            title: 'Traiter des données',
+            desc: 'Utilisation ciblée de Python, JSON, CSV et quickchart.io pour automatiser la collecte et la visualisation de données open source (data.gouv.fr).',
+            tags: ['Python', 'JSON', 'CSV', 'data.gouv.fr', 'quickchart.io'],
+            link: 'https://gitlab.univ-artois.fr/raphael_macker/sae-1.05'
+          }
+        ]
+      },
+      {
+        code: 'CE3.04',
+        label: 'en choisissant les outils de développement adaptés',
+        projects: [
+          {
+            sae: 'SAE 1.04 — S1',
+            title: 'Se présenter sur Internet',
+            desc: 'Choix de HTML/CSS/JS vanilla pour le portfolio sans dépendances locales, hébergé sur GitHub Pages. Décision justifiée par les contraintes du projet.',
+            tags: ['HTML', 'CSS', 'JavaScript', 'GitHub Pages'],
+            link: '#'
+          }
+        ]
+      },
+      {
+        code: 'CE3.05',
+        label: 'en intégrant les problématiques de sécurité',
+        projects: [
+          {
+            sae: 'SAE 1.04 — S1',
+            title: 'Se présenter sur Internet',
+            desc: 'Prise en compte de la sécurité dans le développement web : HTTPS, absence de données personnelles sensibles exposées, mentions légales conformes au RGPD.',
+            tags: ['HTTPS', 'RGPD', 'Sécurité web'],
+            link: '#'
+          }
+        ]
+      }
+    ]
+  },
+
+  securiser: {
+    label: 'Compétence 4 · Parcours Cybersécurité',
+    title: 'Sécuriser',
+    desc: 'Sécuriser les réseaux et systèmes d\'information : mettre en œuvre des politiques de sécurité, identifier les risques, sensibiliser les utilisateurs et protéger les infrastructures contre les menaces.',
+    colorClass: 'c4',
+    ce: [
+      {
+        code: 'CE4.01',
+        label: 'en visant un juste compromis entre exigences de sécurité et contraintes d\'utilisation',
+        projects: [
+          {
+            sae: 'SAE 1.01 — S1',
+            title: 'Sensibilisation au risque numérique',
+            desc: 'En tant que RSSI fictif, élaboration d\'un diaporama de sensibilisation équilibrant contraintes de sécurité et acceptabilité par les utilisateurs. Présentation des 4 bonnes pratiques prioritaires.',
+            tags: ['ANSSI', 'Cyberrisques', 'MOOC SecNum', 'Bonnes pratiques'],
+            link: null
+          }
+        ]
+      },
+      {
+        code: 'CE4.02',
+        label: 'en respectant les normes et le cadre juridique',
+        projects: [
+          {
+            sae: 'SAE 1.01 — S1',
+            title: 'Sensibilisation au risque numérique',
+            desc: 'Référence aux normes ANSSI et au cadre légal français dans l\'élaboration de la politique de sensibilisation. MOOC SecNumAcadémie complété.',
+            tags: ['ANSSI', 'SecNumAcadémie', 'Cadre légal', 'RGPD'],
+            link: null
+          }
+        ]
+      },
+      {
+        code: 'CE4.03',
+        label: 'en intégrant les dernières technologies',
+        projects: [
+          {
+            sae: 'SAE 1.01 — S1',
+            title: 'Sensibilisation au risque numérique',
+            desc: 'Cours Cisco Netacad "Introduction à la cybersécurité" : veille sur les menaces actuelles, ransomware, phishing et ingénierie sociale.',
+            tags: ['Cisco Netacad', 'Ransomware', 'Phishing', 'Menaces actuelles'],
+            link: null
+          }
+        ]
+      },
+      {
+        code: 'CE4.04',
+        label: 'en travaillant en équipe',
+        projects: []
+      },
+      {
+        code: 'CE4.05',
+        label: 'en sensibilisant efficacement des utilisateurs',
+        projects: [
+          {
+            sae: 'SAE 1.01 — S1',
+            title: 'Sensibilisation au risque numérique',
+            desc: 'Conception et présentation orale d\'un diaporama de sensibilisation destiné à l\'ensemble du personnel d\'une entreprise. Pédagogie adaptée à un public non-technique.',
+            tags: ['Présentation orale', 'Sensibilisation', 'Communication'],
+            link: null
+          }
+        ]
+      }
+    ]
+  },
+
+  surveiller: {
+    label: 'Compétence 5 · Parcours ROM',
+    title: 'Surveiller',
+    desc: 'Surveiller un réseau et les services associés : collecter et analyser des données, mettre en place des outils de supervision et assurer la continuité de service des infrastructures.',
+    colorClass: 'c5',
+    ce: [
+      {
+        code: 'CE5.01',
+        label: 'en assurant une veille permanente',
+        projects: []
+      },
+      {
+        code: 'CE5.02',
+        label: 'en réalisant les mises à jour critiques',
+        projects: []
+      },
+      {
+        code: 'CE5.03',
+        label: 'en automatisant des tâches',
+        projects: [
+          {
+            sae: 'SAE 1.05 — S1',
+            title: 'Traiter des données',
+            desc: 'Script Python automatisé pour récupérer des données CSV depuis data.gouv.fr, les agréger (moyennes, maximum, filtrage), les convertir en JSON et les transmettre à un site web pour affichage graphique.',
+            tags: ['Python', 'Automatisation', 'CSV', 'JSON', 'data.gouv.fr'],
+            link: 'https://gitlab.univ-artois.fr/raphael_macker/sae-1.05'
+          }
+        ]
+      },
+      {
+        code: 'CE5.04',
+        label: 'en s\'intégrant dans une équipe',
+        projects: [
+          {
+            sae: 'SAE 1.05 — S1',
+            title: 'Traiter des données',
+            desc: 'Projet conduit en équipe avec gestion collaborative du code sur GitLab. Répartition des tâches, revues de code et intégration des contributions de chaque membre.',
+            tags: ['GitLab', 'Travail en équipe', 'Git'],
+            link: 'https://gitlab.univ-artois.fr/raphael_macker/sae-1.05'
+          }
+        ]
+      },
+      {
+        code: 'CE5.05',
+        label: 'en surveillant le comportement du réseau',
+        projects: [
+          {
+            sae: 'SAE 1.05 — S1',
+            title: 'Traiter des données',
+            desc: 'Collecte automatisée de données réseau/environnementales depuis des sources ouvertes, agrégation statistique, transformation et transmission vers un tableau de bord web. Visualisation des indicateurs en temps réel.',
+            tags: ['Python', 'Open Data', 'Visualisation', 'Tableau de bord'],
+            link: 'https://gitlab.univ-artois.fr/raphael_macker/sae-1.05'
+          }
+        ]
+      },
+      {
+        code: 'CE5.06',
+        label: 'en veillant au respect des contrats et à la conformité des obligations du système d\'information',
+        projects: []
+      }
+    ]
+  }
+};
+
+/* ─── Modal open/close ─── */
+function openModal(key) {
+  const comp = COMPETENCES[key];
+  if (!comp) return;
+
+  const modal = document.getElementById('modal');
+  const overlay = document.getElementById('modalOverlay');
+
+  modal.className = 'modal ' + comp.colorClass;
+
+  let ceHtml = comp.ce.map((ce, i) => {
+    let projHtml = '';
+    if (ce.projects.length === 0) {
+      projHtml = `<p class="ce-no-project">Aucun projet associé pour le moment — à compléter en S2.</p>`;
+    } else {
+      projHtml = ce.projects.map(proj => {
+        const linkHtml = proj.link
+          ? `<a href="${proj.link}" class="ce-proj-link" target="_blank" onclick="event.stopPropagation()">
+               Voir le projet <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+             </a>`
+          : `<span class="ce-proj-link-soon">Lien à venir</span>`;
+        const tagsHtml = proj.tags.map(t => `<span class="ce-proj-tag">${t}</span>`).join('');
+        return `
+          <div class="ce-proj">
+            <div class="ce-proj-top">
+              <div>
+                <div class="ce-proj-sae">${proj.sae}</div>
+                <div class="ce-proj-title">${proj.title}</div>
+              </div>
+            </div>
+            <div class="ce-proj-desc">${proj.desc}</div>
+            <div class="ce-proj-footer">
+              <div class="ce-proj-tags">${tagsHtml}</div>
+              ${linkHtml}
+            </div>
+          </div>`;
+      }).join('');
+    }
+
+    return `
+      <div class="ce-item" id="ce-${key}-${i}">
+        <div class="ce-header" onclick="toggleCE('ce-${key}-${i}')">
+          <div class="ce-header-left">
+            <span class="ce-code">${ce.code}</span>
+            <span class="ce-label">${ce.label}</span>
+          </div>
+          <svg class="ce-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+        <div class="ce-body">
+          <div class="ce-projects">${projHtml}</div>
+        </div>
+      </div>`;
+  }).join('');
+
+  modal.innerHTML = `
+    <div class="modal-close">
+      <span class="modal-close-label">// ${comp.label}</span>
+      <button class="modal-close-btn" onclick="closeModal()">
+        Fermer
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <div class="modal-hero">
+      <div class="modal-hero-tag">${comp.label}</div>
+      <div class="modal-hero-title">${comp.title}</div>
+      <p class="modal-hero-desc">${comp.desc}</p>
+    </div>
+    <div class="modal-ce-section">
+      <div class="modal-ce-section-title">Éléments constitutifs &amp; projets associés</div>
+      <div class="ce-list">${ceHtml}</div>
+    </div>`;
+
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+}
+
+function toggleCE(id) {
+  const item = document.getElementById(id);
+  if (!item) return;
+  item.classList.toggle('open');
+}
+
+/* ─── ESC to close ─── */
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+/* ─── Navbar scroll ─── */
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
 document.getElementById('navToggle').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
 
+/* ─── Reveal on scroll ─── */
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.05 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// Active pill
-const ids   = ['administrer','connecter','programmer','securiser','surveiller'];
-const pills = document.querySelectorAll('.comp-pill');
-const so = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if(e.isIntersecting) {
-      const i = ids.indexOf(e.target.id);
-      if(i > -1) { pills.forEach(p => p.classList.remove('active')); pills[i].classList.add('active'); }
-    }
-  });
-}, { threshold: 0.25, rootMargin: '-100px 0px -50% 0px' });
-document.querySelectorAll('.comp-section').forEach(s => so.observe(s));
 </script>
 </body>
 </html>
