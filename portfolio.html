@@ -536,7 +536,6 @@
 </head>
 <body>
 
-  <!-- NAVBAR -->
   <nav class="navbar" id="navbar">
     <a class="nav-brand" href="index.html">
       <span class="dot"></span>RM.portfolio
@@ -552,10 +551,8 @@
     </div>
   </nav>
 
-  <!-- CONTENU PRINCIPAL -->
   <main>
     
-    <!-- HERO -->
     <section class="page-hero">
       <div class="page-hero-bg"><div class="page-hero-orb a"></div></div>
       <div class="container">
@@ -565,7 +562,6 @@
       </div>
     </section>
 
-    <!-- COMPETENCES CARDS -->
     <section class="section">
       <div class="container">
 
@@ -577,7 +573,6 @@
 
         <div class="comp-cards-grid reveal" style="transition-delay:.15s">
 
-          <!-- C1 — ADMINISTRER -->
           <button class="comp-card c1" onclick="openModal('administrer')">
             <div class="comp-card-num">01</div>
             <div class="comp-card-tag">Niveau 1 · UE11</div>
@@ -593,7 +588,6 @@
             </div>
           </button>
 
-          <!-- C2 — CONNECTER -->
           <button class="comp-card c2" onclick="openModal('connecter')">
             <div class="comp-card-num">02</div>
             <div class="comp-card-tag">Niveau 1 · UE12</div>
@@ -609,7 +603,6 @@
             </div>
           </button>
 
-          <!-- C3 — PROGRAMMER -->
           <button class="comp-card c3" onclick="openModal('programmer')">
             <div class="comp-card-num">03</div>
             <div class="comp-card-tag">Niveau 1 · UE13</div>
@@ -625,7 +618,6 @@
             </div>
           </button>
 
-          <!-- C4 — SÉCURISER (LOCKED) -->
           <button class="comp-card c4 locked" onclick="return false">
             <div class="comp-card-num">04</div>
             <div class="locked-badge">
@@ -642,7 +634,6 @@
             </div>
           </button>
 
-          <!-- C5 — SURVEILLER (LOCKED) -->
           <button class="comp-card c5 locked" onclick="return false">
             <div class="comp-card-num">05</div>
             <div class="locked-badge">
@@ -663,7 +654,6 @@
       </div>
     </section>
 
-    <!-- PARCOURS -->
     <section class="parcours-section" id="parcours">
       <div class="container">
         
@@ -675,7 +665,6 @@
 
         <div class="parcours-grid reveal" style="transition-delay:.2s">
           
-          <!-- Parcours A: Cyber -->
           <div class="parcours-card cyber">
             <div class="parcours-label">Parcours A</div>
             <div class="parcours-title">Cybersécurité</div>
@@ -692,7 +681,6 @@
             </div>
           </div>
 
-          <!-- Parcours B: ROM -->
           <div class="parcours-card rom">
             <div class="parcours-label">Parcours B</div>
             <div class="parcours-title">Réseaux Opérateurs Multimédia</div>
@@ -715,7 +703,6 @@
 
   </main>
 
-  <!-- FOOTER -->
   <footer>
     <div class="container">
       <div class="footer-inner">
@@ -726,14 +713,11 @@
     </div>
   </footer>
 
-  <!-- MODAL OVERLAY -->
   <div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
     <div class="modal" id="modal">
-      <!-- Injecté par JavaScript -->
-    </div>
+      </div>
   </div>
 
-  <!-- JAVASCRIPT -->
   <script>
     /* ==========================================
        1. DATA : LES COMPÉTENCES ET PROJETS
@@ -749,7 +733,6 @@
           <p>Cette SAE avait pour but de nous plonger dans la conception, la configuration et le dépannage d'un réseau local d'entreprise. À l'aide de l'outil de simulation Cisco Packet Tracer, nous avons pu mettre en pratique les notions fondamentales du semestre 1.</p>
           <p>Nous avons conçu une architecture segmentée via des VLANs, mis en place un routage inter-VLAN (Router-on-a-stick), déployé des services automatisés (DHCP, DNS), et sécurisé l'accès distant aux équipements réseaux via SSH et des règles de filtrage (ACL). Les livrables comprenaient les schémas, les configurations et les phases de tests.</p>
           <div class="sae-presentation-images">
-            <!-- Pense à bien mettre tes images dans le bon dossier img/ -->
             <img src="img/dhcp_dns.png" alt="Aperçu configuration DHCP DNS">
             <img src="img/test_vlan.png" alt="Aperçu des tests VLANs dans Packet Tracer">
           </div>
@@ -870,14 +853,168 @@
         title: 'Connecter',
         desc: 'Niveau 1 — Découvrir les transmissions et la ToIP : mesurer et analyser les signaux, caractériser des systèmes de transmission, déployer des supports et connecter des systèmes de téléphonie sur IP.',
         colorClass: 'c2',
-        ce: []
+        presentationHtml: `
+          <p><strong>Présentation de la SAE 1.03 : Découvrir un système de transmission</strong></p>
+          <p>Cette SAE est intimement liée à la couche physique (Couche 1 du modèle OSI) et à l'étude des signaux. L'objectif était de comprendre comment l'information transite réellement dans les câbles et d'analyser les phénomènes physiques de dégradation du signal (atténuation, bruit, impédance).</p>
+          <p>Pour y parvenir, nous avons effectué des mesures réelles sur des tourets de câbles (comme du Cat6) à l'aide d'oscilloscopes et de générateurs de signaux. En parallèle, nous avons modélisé ces lignes de transmission à l'aide de logiciels de simulation mathématique et électronique (comme LTspice) pour confronter la théorie à la pratique physique.</p>
+          <div class="sae-presentation-images">
+            <img src="img/oscilloscope_mesure.jpg" alt="Mesure de signal à l'oscilloscope">
+            <img src="img/simulation_ltspice.png" alt="Simulation de ligne sur LTspice">
+          </div>
+        `,
+        ce: [
+          {
+            code: 'AC12.01',
+            label: 'Mesurer, analyser et commenter les signaux',
+            projects: [{
+              sae: 'SAE 1.03 — S1',
+              title: 'Découvrir un système de transmission',
+              desc: 'Mesures d\'atténuation et de retard sur un câble paires torsadées. Analyse des signaux en fréquence et en amplitude.',
+              tags: ['Mesures', 'Signaux', 'Oscilloscope', 'Atténuation'],
+              reflexion: `
+                <p><strong>Ce que j'ai fait :</strong> J'ai mesuré l'atténuation (la perte de puissance) et le temps de propagation d'un signal électrique traversant une bobine de câble de grande longueur.</p>
+                <p><strong>Comment j'ai fait ?</strong> J'ai injecté un signal sinusoïdal à l'aide d'un GBF (Générateur Basse Fréquence) à une extrémité du câble, et j'ai relevé le signal en sortie avec un oscilloscope pour comparer son amplitude et son déphasage par rapport au signal d'origine.</p>
+                <p><strong>Pourquoi j'ai fait ?</strong> Pour vérifier de manière concrète que le signal perd en puissance à mesure qu'il parcourt de la distance. Cela justifie techniquement la limite des 100 mètres pour les câbles Ethernet en réseau local (LAN).</p>
+                <p><strong>Mes difficultés :</strong> Régler correctement les calibres de l'oscilloscope (base de temps et sensibilité verticale) pour obtenir une courbe stable et pouvoir y placer les curseurs de mesure précisément.</p>
+                <p><strong>Ce que j'ai appris :</strong> À manipuler des équipements de mesure professionnels d'électronique et à interpréter la notion de bande passante d'un support physique de transmission.</p>
+                <p><strong>Améliorations :</strong> Réaliser ces mêmes mesures de réflectométrie sur de la fibre optique avec un OTDR pour comparer les pertes lumineuses par rapport aux pertes électriques du cuivre.</p>
+              `
+            }]
+          },
+          {
+            code: 'AC12.02',
+            label: 'Caractériser des systèmes de transmissions élémentaires et découvrir la modélisation mathématique de leur fonctionnement',
+            projects: [{
+              sae: 'SAE 1.03 — S1',
+              title: 'Découvrir un système de transmission',
+              desc: 'Simulations sur LTspice pour modéliser le comportement d\'une ligne de transmission et caractériser ses paramètres mathématiques.',
+              tags: ['LTspice', 'Modélisation', 'Transmission', 'Mathématiques'],
+              reflexion: `
+                <p><strong>Ce que j'ai fait :</strong> J'ai simulé informatiquement le comportement électrique du câble étudié précédemment pour valider mes mesures physiques avec la théorie mathématique.</p>
+                <p><strong>Comment j'ai fait ?</strong> En utilisant le logiciel LTspice, j'ai modélisé le câble comme une succession de composants élémentaires (résistances, bobines, condensateurs) et j'ai lancé une simulation fréquentielle (analyse AC) pour observer la réponse du système.</p>
+                <p><strong>Pourquoi j'ai fait ?</strong> La modélisation permet d'anticiper le comportement d'un système sans avoir besoin du matériel physique sous la main. Elle permet aussi de comprendre visuellement les équations des télégraphistes qui régissent la transmission.</p>
+                <p><strong>Mes difficultés :</strong> Faire le lien entre les formules mathématiques abstraites vues en cours (impédance caractéristique, constante de propagation) et les paramètres concrets à rentrer dans l'interface du logiciel de simulation.</p>
+                <p><strong>Ce que j'ai appris :</strong> Que la théorie mathématique et la réalité physique convergent presque parfaitement si le modèle de simulation est bien défini. J'ai aussi appris à prendre en main un outil standard de l'industrie (LTspice).</p>
+                <p><strong>Améliorations :</strong> Utiliser des outils comme Simulink (MATLAB) pour simuler des modulations de signaux plus complexes (comme le QAM utilisé dans le Wi-Fi) plutôt que de simples signaux sinusoïdaux de base.</p>
+              `
+            }]
+          },
+          {
+            code: 'AC12.03',
+            label: 'Déployer des supports de transmission',
+            projects: [{
+              sae: 'SAE 1.02 — S1',
+              title: 'S\'initier aux réseaux informatiques',
+              desc: 'Fabrication de cordons de brassage réseau et vérification de la continuité physique.',
+              tags: ['Câblage', 'RJ45', 'Sertissage', 'Cuivre'],
+              reflexion: `
+                <p><strong>Ce que j'ai fait :</strong> J'ai fabriqué mes propres câbles réseau (cordons de brassage) et je les ai testés pour m'assurer de leur bon fonctionnement dans une infrastructure de laboratoire.</p>
+                <p><strong>Comment j'ai fait ?</strong> J'ai dénudé du câble à paires torsadées (cuivre), organisé minutieusement les fils selon la norme couleur T568B, et j'ai utilisé une pince à sertir pour fixer les connecteurs plastiques RJ45. J'ai validé le tout avec un testeur de câble électronique.</p>
+                <p><strong>Pourquoi j'ai fait ?</strong> C'est la compétence de base fondamentale de tout technicien R&T. Un mauvais câblage physique ou un sertissage défaillant est très souvent la première source de panne silencieuse dans une infrastructure.</p>
+                <p><strong>Mes difficultés :</strong> Maintenir les 8 petits fils de cuivre parfaitement alignés et dans le bon ordre lors de l'insertion en force dans la fiche RJ45 avant de procéder au sertissage manuel.</p>
+                <p><strong>Ce que j'ai appris :</strong> La rigueur manuelle absolue nécessaire au câblage, la différence entre le câblage droit et croisé, et l'importance vitale du blindage (FTP/STP) pour éviter les interférences électromagnétiques.</p>
+                <p><strong>Améliorations :</strong> M'entraîner à la soudure (clivage et épissure) de fibre optique, une compétence d'avenir qui demande une précision encore plus chirurgicale que le cuivre.</p>
+              `
+            }]
+          },
+          {
+            code: 'AC12.04',
+            label: 'Connecter les systèmes de ToIP',
+            projects: [] // ToIP is generally covered later in S2 or 2nd year. Kept empty per standard curriculum progression.
+          },
+          {
+            code: 'AC12.05',
+            label: 'Communiquer avec un tiers (client, collaborateur...) et adapter son discours et sa langue à son interlocuteur',
+            projects: [{
+              sae: 'SAE 1.02 & 1.03 — S1',
+              title: 'Documentation et compte-rendu technique',
+              desc: 'Rédaction de comptes rendus de TP et de documentations d\'interventions réseaux structurées.',
+              tags: ['Communication', 'Documentation', 'Anglais technique'],
+              reflexion: `
+                <p><strong>Ce que j'ai fait :</strong> J'ai documenté les procédures de câblage, de test de bout en bout et d'analyse de signaux pour qu'elles soient compréhensibles par mes enseignants et par d'autres techniciens virtuels.</p>
+                <p><strong>Comment j'ai fait ?</strong> J'ai rédigé des comptes rendus de TP structurés (introduction, méthodologie, résultats, conclusion), incluant des schémas d'architecture et des tableaux de relevés de mesures clairs.</p>
+                <p><strong>Pourquoi j'ai fait ?</strong> Dans le monde professionnel, une intervention qui n'est pas documentée est considérée comme une intervention inutile. Il faut pouvoir transmettre l'information de manière claire, normée et pérenne.</p>
+                <p><strong>Mes difficultés :</strong> Trouver le bon équilibre de vulgarisation technique : être assez précis pour prouver la maîtrise technique à un ingénieur, mais utiliser des termes assez clairs pour une vue d'ensemble du projet.</p>
+                <p><strong>Ce que j'ai appris :</strong> L'importance cruciale de la structuration d'un document technique, l'intégration de captures d'écran pertinentes, et la maîtrise du vocabulaire réseau spécifique en français et en anglais.</p>
+                <p><strong>Améliorations :</strong> Améliorer la qualité graphique de mes schémas d'architecture réseau (utiliser des outils avancés comme Visio ou Draw.io) pour les rendre plus lisibles et professionnels.</p>
+              `
+            }]
+          }
+        ]
       },
       programmer: {
         label: 'Compétence 3 · Niveau 1 · UE13',
         title: 'Programmer',
         desc: 'Niveau 1 — S\'intégrer dans un service informatique : utiliser un système informatique et ses outils, lire et modifier des programmes, traduire des algorithmes, connaître l\'architecture web et les bases de données.',
         colorClass: 'c3',
-        ce: []
+        ce: [
+          {
+            code: 'AC13.01',
+            label: 'Utiliser un système informatique et ses outils',
+            projects: [{
+              sae: 'SAE 1.04 — S1',
+              title: 'Se présenter sur Internet',
+              desc: 'Utilisation d\'un environnement de développement complet : éditeur de code VS Code, navigateur DevTools, terminal Linux, Git pour le versionnage du code source du portfolio.',
+              tags: ['VS Code', 'Git', 'Linux', 'DevTools'],
+              link: '#'
+            }]
+          },
+          {
+            code: 'AC13.02',
+            label: 'Lire, exécuter, corriger et modifier un programme',
+            projects: [{
+              sae: 'SAE 1.05 — S1',
+              title: 'Traiter des données',
+              desc: 'Lecture, correction et modification de scripts Python pour récupérer des données CSV depuis data.gouv.fr et les agréger. Débogage et amélioration du code existant.',
+              tags: ['Python', 'Débogage', 'CSV', 'data.gouv.fr'],
+              link: 'https://gitlab.univ-artois.fr/raphael_macker/sae-1.05'
+            }]
+          },
+          {
+            code: 'AC13.03',
+            label: 'Traduire un algorithme, dans un langage et pour un environnement donné',
+            projects: [{
+              sae: 'SAE 1.05 — S1',
+              title: 'Traiter des données',
+              desc: 'Traduction des algorithmes de traitement (agrégation, filtrage, conversion) en Python fonctionnel. Adaptation de la logique métier à l\'environnement d\'exécution cible.',
+              tags: ['Python', 'Algorithmes', 'JSON', 'Agrégation'],
+              link: 'https://gitlab.univ-artois.fr/raphael_macker/sae-1.05'
+            }]
+          },
+          {
+            code: 'AC13.04',
+            label: 'Connaître l\'architecture et les technologies d\'un site Web',
+            projects: [{
+              sae: 'SAE 1.04 — S1',
+              title: 'Se présenter sur Internet',
+              desc: 'Développement du portfolio personnel en HTML/CSS/JS vanilla : maîtrise de la structure DOM, du modèle de boîte CSS, du responsive design et du déploiement sur GitHub Pages.',
+              tags: ['HTML', 'CSS', 'JavaScript', 'Responsive', 'GitHub Pages'],
+              link: '#'
+            }]
+          },
+          {
+            code: 'AC13.05',
+            label: 'Choisir les mécanismes de gestion de données adaptés au développement de l\'outil et argumenter ses choix',
+            projects: [{
+              sae: 'SAE 1.05 — S1',
+              title: 'Traiter des données',
+              desc: 'Choix et justification des formats de données (CSV → JSON) pour le pipeline de traitement. Argumentation du recours à quickchart.io pour la visualisation sans backend lourd.',
+              tags: ['CSV', 'JSON', 'quickchart.io', 'Architecture'],
+              link: 'https://gitlab.univ-artois.fr/raphael_macker/sae-1.05'
+            }]
+          },
+          {
+            code: 'AC13.06',
+            label: 'S\'intégrer dans un environnement propice au développement et au travail collaboratif',
+            projects: [{
+              sae: 'SAE 1.05 — S1',
+              title: 'Traiter des données',
+              desc: 'Projet conduit en équipe avec gestion collaborative du code sur GitLab. Répartition des tâches, revues de code et intégration des contributions de chaque membre.',
+              tags: ['GitLab', 'Git', 'Travail en équipe', 'Collaboration'],
+              link: 'https://gitlab.univ-artois.fr/raphael_macker/sae-1.05'
+            }]
+          }
+        ]
       },
       securiser: {
         label: 'Compétence 4 · Niveau 1 · Parcours Cybersécurité',
@@ -910,6 +1047,11 @@
       return projects.map(proj => {
         const tagsHtml = proj.tags ? proj.tags.map(t => `<span class="ce-proj-tag">${t}</span>`).join('') : '';
         const reflexionHtml = proj.reflexion ? `<div class="reflexion-bloc">${proj.reflexion}</div>` : '';
+        const linkHtml = proj.link 
+          ? `<a href="${proj.link}" class="ce-proj-link" target="_blank" onclick="event.stopPropagation()">
+               Voir le projet <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+             </a>`
+          : '';
         
         return `
           <div class="ce-proj">
@@ -923,6 +1065,7 @@
             ${reflexionHtml}
             <div class="ce-proj-footer">
               <div class="ce-proj-tags">${tagsHtml}</div>
+              ${linkHtml}
             </div>
           </div>`;
       }).join('');
