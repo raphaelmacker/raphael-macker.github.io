@@ -856,10 +856,10 @@
         presentationHtml: `
           <p><strong>Présentation de la SAE 1.03 : Découvrir un système de transmission</strong></p>
           <p>Cette SAE est intimement liée à la couche physique (Couche 1 du modèle OSI) et à l'étude des signaux. L'objectif était de comprendre comment l'information transite réellement dans les câbles et d'analyser les phénomènes physiques de dégradation du signal (atténuation, bruit, impédance).</p>
-          <p>Pour y parvenir, nous avons effectué des mesures réelles sur des tourets de câbles (comme du Cat6) à l'aide d'oscilloscopes et de générateurs de signaux. En parallèle, nous avons modélisé ces lignes de transmission à l'aide de logiciels de simulation mathématique et électronique (comme LTspice) pour confronter la théorie à la pratique physique.</p>
+          <p>Pour y parvenir, nous avons modélisé ces lignes de transmission à l'aide de logiciels de simulation mathématique et électronique comme LTspice ou Simulink pour confronter la théorie à la pratique physique et observer le comportement des signaux analogiques et numériques.</p>
           <div class="sae-presentation-images">
-            <img src="img/oscilloscope_mesure.jpg" alt="Mesure de signal à l'oscilloscope">
-            <img src="img/simulation_ltspice.png" alt="Simulation de ligne sur LTspice">
+            <img src="img/Capture2.PNG" alt="Simulation de ligne sur LTspice avec signal sinusoïdal">
+            <img src="img/Capture1.PNG" alt="Simulation Simulink avec générateur d'impulsions">
           </div>
         `,
         ce: [
@@ -869,15 +869,15 @@
             projects: [{
               sae: 'SAE 1.03 — S1',
               title: 'Découvrir un système de transmission',
-              desc: 'Mesures d\'atténuation et de retard sur un câble paires torsadées. Analyse des signaux en fréquence et en amplitude.',
-              tags: ['Mesures', 'Signaux', 'Oscilloscope', 'Atténuation'],
+              desc: 'Analyse et mesure des signaux (analogiques et numériques) traversant un système de transmission.',
+              tags: ['Mesures', 'Signaux', 'Atténuation', 'Simulink'],
               reflexion: `
-                <p><strong>Ce que j'ai fait :</strong> J'ai mesuré l'atténuation (la perte de puissance) et le temps de propagation d'un signal électrique traversant une bobine de câble de grande longueur.</p>
-                <p><strong>Comment j'ai fait ?</strong> J'ai injecté un signal sinusoïdal à l'aide d'un GBF (Générateur Basse Fréquence) à une extrémité du câble, et j'ai relevé le signal en sortie avec un oscilloscope pour comparer son amplitude et son déphasage par rapport au signal d'origine.</p>
-                <p><strong>Pourquoi j'ai fait ?</strong> Pour vérifier de manière concrète que le signal perd en puissance à mesure qu'il parcourt de la distance. Cela justifie techniquement la limite des 100 mètres pour les câbles Ethernet en réseau local (LAN).</p>
-                <p><strong>Mes difficultés :</strong> Régler correctement les calibres de l'oscilloscope (base de temps et sensibilité verticale) pour obtenir une courbe stable et pouvoir y placer les curseurs de mesure précisément.</p>
-                <p><strong>Ce que j'ai appris :</strong> À manipuler des équipements de mesure professionnels d'électronique et à interpréter la notion de bande passante d'un support physique de transmission.</p>
-                <p><strong>Améliorations :</strong> Réaliser ces mêmes mesures de réflectométrie sur de la fibre optique avec un OTDR pour comparer les pertes lumineuses par rapport aux pertes électriques du cuivre.</p>
+                <p><strong>Ce que j'ai fait :</strong> J'ai étudié le comportement d'un signal électrique (comme des impulsions carrées) transitant par un système pour observer ses variations de gain et de temps.</p>
+                <p><strong>Comment j'ai fait ?</strong> Comme on peut le voir sur la capture Simulink (MATLAB), j'ai utilisé un générateur d'impulsions (Pulse Generator) paramétré avec une période de 5 échantillons et une amplitude de 1. J'ai ensuite observé le signal résultant sur un oscilloscope virtuel (Scope).</p>
+                <p><strong>Pourquoi j'ai fait ?</strong> Visualiser le signal permet de comprendre comment l'information binaire (des 0 et des 1) est réellement traduite électriquement sur le support, et comment elle peut être modifiée (ici par un bloc de gain de 4).</p>
+                <p><strong>Mes difficultés :</strong> Paramétrer correctement le "Sample time" (temps d'échantillonnage) pour obtenir un affichage net sur l'oscilloscope virtuel sans perdre d'informations critiques sur les fronts montants et descendants.</p>
+                <p><strong>Ce que j'ai appris :</strong> Les bases du traitement du signal numérique, la notion d'échantillonnage, d'amplitude et de période directement appliquées à la transmission de données.</p>
+                <p><strong>Améliorations :</strong> Ajouter des blocs de perturbation (comme du bruit blanc gaussien) dans la simulation pour observer l'impact réel des interférences électromagnétiques sur la lisibilité du signal.</p>
               `
             }]
           },
@@ -887,15 +887,15 @@
             projects: [{
               sae: 'SAE 1.03 — S1',
               title: 'Découvrir un système de transmission',
-              desc: 'Simulations sur LTspice pour modéliser le comportement d\'une ligne de transmission et caractériser ses paramètres mathématiques.',
+              desc: 'Simulations sur LTspice pour modéliser le comportement électrique d\'un circuit de transmission et caractériser ses paramètres.',
               tags: ['LTspice', 'Modélisation', 'Transmission', 'Mathématiques'],
               reflexion: `
-                <p><strong>Ce que j'ai fait :</strong> J'ai simulé informatiquement le comportement électrique du câble étudié précédemment pour valider mes mesures physiques avec la théorie mathématique.</p>
-                <p><strong>Comment j'ai fait ?</strong> En utilisant le logiciel LTspice, j'ai modélisé le câble comme une succession de composants élémentaires (résistances, bobines, condensateurs) et j'ai lancé une simulation fréquentielle (analyse AC) pour observer la réponse du système.</p>
-                <p><strong>Pourquoi j'ai fait ?</strong> La modélisation permet d'anticiper le comportement d'un système sans avoir besoin du matériel physique sous la main. Elle permet aussi de comprendre visuellement les équations des télégraphistes qui régissent la transmission.</p>
-                <p><strong>Mes difficultés :</strong> Faire le lien entre les formules mathématiques abstraites vues en cours (impédance caractéristique, constante de propagation) et les paramètres concrets à rentrer dans l'interface du logiciel de simulation.</p>
-                <p><strong>Ce que j'ai appris :</strong> Que la théorie mathématique et la réalité physique convergent presque parfaitement si le modèle de simulation est bien défini. J'ai aussi appris à prendre en main un outil standard de l'industrie (LTspice).</p>
-                <p><strong>Améliorations :</strong> Utiliser des outils comme Simulink (MATLAB) pour simuler des modulations de signaux plus complexes (comme le QAM utilisé dans le Wi-Fi) plutôt que de simples signaux sinusoïdaux de base.</p>
+                <p><strong>Ce que j'ai fait :</strong> J'ai simulé informatiquement le comportement électrique d'un système élémentaire (un diviseur de tension composé de résistances) pour valider la théorie mathématique sur l'atténuation.</p>
+                <p><strong>Comment j'ai fait ?</strong> En utilisant le logiciel LTspice, j'ai modélisé un circuit avec une source de tension alternative (SINE) et deux résistances (R1 et R2 de 50 ohms). J'ai ensuite lancé une analyse transitoire (.tran 0 0.08) pour comparer la courbe de tension d'entrée (V(n001)) et de sortie (V(n002)).</p>
+                <p><strong>Pourquoi j'ai fait ?</strong> La modélisation permet d'anticiper le comportement d'un système sans avoir besoin du matériel physique sous la main. Elle prouve visuellement les calculs d'atténuation vus en cours (ici, la tension de sortie est divisée par deux).</p>
+                <p><strong>Mes difficultés :</strong> Prendre en main l'interface un peu aride de LTspice et comprendre la syntaxe des directives de simulation (comme configurer correctement les paramètres SINE : offset, amplitude, fréquence).</p>
+                <p><strong>Ce que j'ai appris :</strong> Que la théorie mathématique et la réalité physique convergent parfaitement si le modèle de simulation est bien défini. J'ai aussi appris à utiliser les curseurs pour mesurer le déphasage et l'atténuation sur les courbes.</p>
+                <p><strong>Améliorations :</strong> Remplacer les simples résistances par des inductances (bobines) et des capacités (condensateurs) pour modéliser le comportement réel et complexe d'un long câble coaxial ou d'une paire torsadée.</p>
               `
             }]
           },
@@ -920,7 +920,7 @@
           {
             code: 'AC12.04',
             label: 'Connecter les systèmes de ToIP',
-            projects: [] // ToIP is generally covered later in S2 or 2nd year. Kept empty per standard curriculum progression.
+            projects: [] 
           },
           {
             code: 'AC12.05',
@@ -931,12 +931,12 @@
               desc: 'Rédaction de comptes rendus de TP et de documentations d\'interventions réseaux structurées.',
               tags: ['Communication', 'Documentation', 'Anglais technique'],
               reflexion: `
-                <p><strong>Ce que j'ai fait :</strong> J'ai documenté les procédures de câblage, de test de bout en bout et d'analyse de signaux pour qu'elles soient compréhensibles par mes enseignants et par d'autres techniciens virtuels.</p>
-                <p><strong>Comment j'ai fait ?</strong> J'ai rédigé des comptes rendus de TP structurés (introduction, méthodologie, résultats, conclusion), incluant des schémas d'architecture et des tableaux de relevés de mesures clairs.</p>
-                <p><strong>Pourquoi j'ai fait ?</strong> Dans le monde professionnel, une intervention qui n'est pas documentée est considérée comme une intervention inutile. Il faut pouvoir transmettre l'information de manière claire, normée et pérenne.</p>
-                <p><strong>Mes difficultés :</strong> Trouver le bon équilibre de vulgarisation technique : être assez précis pour prouver la maîtrise technique à un ingénieur, mais utiliser des termes assez clairs pour une vue d'ensemble du projet.</p>
-                <p><strong>Ce que j'ai appris :</strong> L'importance cruciale de la structuration d'un document technique, l'intégration de captures d'écran pertinentes, et la maîtrise du vocabulaire réseau spécifique en français et en anglais.</p>
-                <p><strong>Améliorations :</strong> Améliorer la qualité graphique de mes schémas d'architecture réseau (utiliser des outils avancés comme Visio ou Draw.io) pour les rendre plus lisibles et professionnels.</p>
+                <p><strong>Ce que j'ai fait :</strong> J'ai documenté les procédures de simulation et d'analyse de signaux pour qu'elles soient compréhensibles par mes enseignants et justifient mes choix techniques.</p>
+                <p><strong>Comment j'ai fait ?</strong> J'ai rédigé des comptes rendus structurés incluant des captures d'écran annotées de Simulink et LTspice, avec des explications claires sur l'atténuation et les temps de propagation.</p>
+                <p><strong>Pourquoi j'ai fait ?</strong> Dans le monde professionnel, une intervention ou une étude qui n'est pas documentée perd de sa valeur. Il faut pouvoir justifier les résultats d'une simulation de manière claire et normée.</p>
+                <p><strong>Mes difficultés :</strong> Trouver le bon équilibre de vulgarisation : être assez précis pour prouver la maîtrise technique, mais rester synthétique pour ne pas noyer le lecteur d'informations superflues.</p>
+                <p><strong>Ce que j'ai appris :</strong> L'importance cruciale de la mise en page d'un document technique, l'intégration de captures d'écran pertinentes, et la maîtrise du vocabulaire lié à la transmission du signal.</p>
+                <p><strong>Améliorations :</strong> Réaliser des présentations orales plus dynamiques pour accompagner ces rapports écrits, afin d'être plus à l'aise face à un "vrai client".</p>
               `
             }]
           }
