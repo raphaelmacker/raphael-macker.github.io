@@ -48,6 +48,41 @@
 .comp-card.c4:hover { border-color: rgba(248,113,113,.4); box-shadow: 0 16px 40px rgba(248,113,113,.08); }
 .comp-card.c5:hover { border-color: rgba(251,146,60,.4); box-shadow: 0 16px 40px rgba(251,146,60,.08); }
 
+/* ── LOCKED STATE ── */
+.comp-card.locked {
+  opacity: 0.42;
+  cursor: not-allowed;
+  filter: grayscale(0.35);
+}
+.comp-card.locked::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(45deg, transparent, transparent 8px, rgba(255,255,255,.018) 8px, rgba(255,255,255,.018) 9px);
+  pointer-events: none;
+}
+.comp-card.locked:hover {
+  transform: none !important;
+  box-shadow: none !important;
+  border-color: var(--border) !important;
+}
+.locked-badge {
+  position: absolute;
+  top: .75rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  gap: .3rem;
+  font-family: var(--font-mono);
+  font-size: .52rem;
+  letter-spacing: .12em;
+  color: var(--muted);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: .22rem .55rem;
+  z-index: 2;
+}
+
 .comp-card-num {
   font-family: var(--font-display);
   font-size: 4rem;
@@ -109,6 +144,7 @@
 .comp-card.c4 .comp-card-arrow { color: #f87171; }
 .comp-card.c5 .comp-card-arrow { color: #fb923c; }
 .comp-card:hover .comp-card-arrow { gap: .7rem; }
+.comp-card.locked .comp-card-arrow { display: none; }
 
 /* ══════════════════════════════
    MODAL OVERLAY
@@ -149,7 +185,6 @@
   transform: translateY(0) scale(1);
 }
 
-/* color accent top border */
 .modal.c1 { border-top: 3px solid #00c8ff; }
 .modal.c2 { border-top: 3px solid #00ff8c; }
 .modal.c3 { border-top: 3px solid #a78bfa; }
@@ -189,7 +224,6 @@
 }
 .modal-close-btn:hover { border-color: var(--text); color: var(--text); }
 
-/* Modal hero */
 .modal-hero {
   padding: 2.5rem 2rem 2rem;
   border-bottom: 1px solid var(--border);
@@ -221,7 +255,6 @@
   line-height: 1.7;
 }
 
-/* CE list */
 .modal-ce-section {
   padding: 2rem;
 }
@@ -305,7 +338,6 @@
 }
 .ce-item.open .ce-chevron { transform: rotate(180deg); }
 
-/* CE body (projects) */
 .ce-body {
   max-height: 0;
   overflow: hidden;
@@ -330,7 +362,6 @@
   padding: .5rem 0;
 }
 
-/* Project card inside CE */
 .ce-proj {
   background: var(--bg);
   border: 1px solid var(--border);
@@ -419,7 +450,6 @@
   padding: .22rem .55rem;
 }
 
-/* scrollbar in modal */
 .modal::-webkit-scrollbar { width: 3px; }
 .modal::-webkit-scrollbar-track { background: var(--bg2); }
 .modal::-webkit-scrollbar-thumb { background: var(--cyan2); }
@@ -477,7 +507,7 @@
 <section class="section">
   <div class="container">
 
-      <div class="reveal">
+    <div class="reveal">
       <div class="section-tag">Programme National BUT R&T — Niveau 1</div>
       <h2 class="section-title">5 Compétences<br><em>cliquez pour explorer</em></h2>
       <p class="section-sub">Les apprentissages critiques (AC) du Niveau 1 validés en S1 et S2, avec les projets SAE associés.</p>
@@ -521,27 +551,33 @@
         </div>
       </button>
 
-      <!-- C4 — SÉCURISER -->
-      <button class="comp-card c4" onclick="openModal('securiser')">
+      <!-- C4 — SÉCURISER (LOCKED) -->
+      <button class="comp-card c4 locked" onclick="return false">
         <div class="comp-card-num">04</div>
+        <div class="locked-badge">
+          <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          2ÈME ANNÉE
+        </div>
         <div class="comp-card-tag">Niveau 1 · Cyber</div>
         <div class="comp-card-title">Sécuriser</div>
-        <div class="comp-card-sub">Découvrir la sécurité informatique</div>
+        <div class="comp-card-sub">Accès disponible en 2ème année</div>
         <div class="comp-card-meta">
           <span class="comp-card-count">4 AC · SAE 1.01</span>
-          <span class="comp-card-arrow">Explorer <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
         </div>
       </button>
 
-      <!-- C5 — SURVEILLER -->
-      <button class="comp-card c5" onclick="openModal('surveiller')">
+      <!-- C5 — SURVEILLER (LOCKED) -->
+      <button class="comp-card c5 locked" onclick="return false">
         <div class="comp-card-num">05</div>
+        <div class="locked-badge">
+          <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          2ÈME ANNÉE
+        </div>
         <div class="comp-card-tag">Niveau 1 · ROM</div>
         <div class="comp-card-title">Surveiller</div>
-        <div class="comp-card-sub">Surveiller un réseau informatique</div>
+        <div class="comp-card-sub">Accès disponible en 2ème année</div>
         <div class="comp-card-meta">
           <span class="comp-card-count">4 AC · SAE 1.05</span>
-          <span class="comp-card-arrow">Explorer <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
         </div>
       </button>
 
@@ -859,60 +895,7 @@ const COMPETENCES = {
     title: 'Sécuriser',
     desc: 'Niveau 1 — Découvrir la sécurité informatique : identifier les classes de menaces, analyser la sécurité d\'un réseau simple, mettre en œuvre des mesures de base et appliquer les bonnes pratiques.',
     colorClass: 'c4',
-    ce: [
-      {
-        code: 'AC14.01',
-        label: 'Identifier les différentes classes de menaces informatiques et leurs vecteurs d\'attaque',
-        projects: [
-          {
-            sae: 'SAE 1.01 — S1',
-            title: 'Sensibilisation au risque numérique',
-            desc: 'Cours Cisco Netacad "Introduction à la cybersécurité" : identification et classification des menaces actuelles — ransomware, phishing, ingénierie sociale, attaques réseau.',
-            tags: ['Cisco Netacad', 'Ransomware', 'Phishing', 'Menaces', 'MOOC SecNum'],
-            link: null
-          }
-        ]
-      },
-      {
-        code: 'AC14.02',
-        label: 'Analyser la sécurité d\'un réseau simple et identifier ses failles',
-        projects: [
-          {
-            sae: 'SAE 1.01 — S1',
-            title: 'Sensibilisation au risque numérique',
-            desc: 'Analyse des vulnérabilités d\'une infrastructure réseau fictive dans le cadre du rôle de RSSI. Identification des failles potentielles et des vecteurs d\'attaque prioritaires.',
-            tags: ['ANSSI', 'Audit', 'Vulnérabilités', 'RSSI'],
-            link: null
-          }
-        ]
-      },
-      {
-        code: 'AC14.03',
-        label: 'Mettre en œuvre des mesures de sécurité de base : filtrage, chiffrement, authentification',
-        projects: [
-          {
-            sae: 'SAE 1.01 — S1',
-            title: 'Sensibilisation au risque numérique',
-            desc: 'Élaboration d\'un diaporama de sensibilisation présentant les 4 bonnes pratiques prioritaires : authentification forte, mise à jour, chiffrement des données, filtrage réseau.',
-            tags: ['Authentification', 'Chiffrement', 'Filtrage', 'Bonnes pratiques'],
-            link: null
-          }
-        ]
-      },
-      {
-        code: 'AC14.04',
-        label: 'Appliquer les règles et bonnes pratiques en matière de sécurité informatique',
-        projects: [
-          {
-            sae: 'SAE 1.01 — S1',
-            title: 'Sensibilisation au risque numérique',
-            desc: 'Référence aux normes ANSSI et au cadre légal français (RGPD). MOOC SecNumAcadémie complété. Conception et présentation orale d\'une politique de sensibilisation adaptée à un public non-technique.',
-            tags: ['ANSSI', 'SecNumAcadémie', 'RGPD', 'Présentation orale', 'Communication'],
-            link: null
-          }
-        ]
-      }
-    ]
+    ce: []
   },
 
   surveiller: {
@@ -920,57 +903,17 @@ const COMPETENCES = {
     title: 'Surveiller',
     desc: 'Niveau 1 — Surveiller un réseau informatique : observer et mesurer le trafic, identifier et classer les flux réseau, utiliser des outils de monitoring et détecter les anomalies de fonctionnement.',
     colorClass: 'c5',
-    ce: [
-      {
-        code: 'AC15.01',
-        label: 'Mesurer et observer le trafic réseau à l\'aide d\'outils de capture (Wireshark, tcpdump)',
-        projects: []
-      },
-      {
-        code: 'AC15.02',
-        label: 'Identifier et classer les flux réseau en fonction des protocoles et services utilisés',
-        projects: [
-          {
-            sae: 'SAE 1.05 — S1',
-            title: 'Traiter des données',
-            desc: 'Collecte et classification de données réseau/environnementales depuis des sources ouvertes (data.gouv.fr). Identification des flux et des protocoles dans les données récupérées.',
-            tags: ['Python', 'Open Data', 'Protocoles', 'Classification'],
-            link: 'https://gitlab.univ-artois.fr/raphael_macker/sae-1.05'
-          }
-        ]
-      },
-      {
-        code: 'AC15.03',
-        label: 'Utiliser des outils de monitoring de base pour surveiller l\'état d\'équipements réseau',
-        projects: [
-          {
-            sae: 'SAE 1.05 — S1',
-            title: 'Traiter des données',
-            desc: 'Mise en place d\'un tableau de bord web affichant en temps réel des indicateurs agrégés récupérés automatiquement. Visualisation des données via quickchart.io.',
-            tags: ['Python', 'Automatisation', 'CSV', 'JSON', 'Tableau de bord'],
-            link: 'https://gitlab.univ-artois.fr/raphael_macker/sae-1.05'
-          }
-        ]
-      },
-      {
-        code: 'AC15.04',
-        label: 'Détecter les anomalies de fonctionnement et les signaler à l\'administrateur',
-        projects: [
-          {
-            sae: 'SAE 1.05 — S1',
-            title: 'Traiter des données',
-            desc: 'Script automatisé en Python pour détecter les valeurs aberrantes dans les données collectées et les signaler. Projet conduit en équipe avec gestion du code sur GitLab.',
-            tags: ['Python', 'Détection d\'anomalies', 'GitLab', 'Travail en équipe'],
-            link: 'https://gitlab.univ-artois.fr/raphael_macker/sae-1.05'
-          }
-        ]
-      }
-    ]
+    ce: []
   }
 };
 
+/* ─── Locked keys ─── */
+const LOCKED = ['securiser', 'surveiller'];
+
 /* ─── Modal open/close ─── */
 function openModal(key) {
+  if (LOCKED.includes(key)) return;
+
   const comp = COMPETENCES[key];
   if (!comp) return;
 
