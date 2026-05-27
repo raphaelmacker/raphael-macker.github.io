@@ -313,6 +313,53 @@
       padding: 0.2rem;
     }
 
+    /* --- STYLES POUR LES BLOCS DE CODE (SAE 1.04 & 1.05) --- */
+    .code-window {
+      flex: 1 1 250px;
+      background: #0d1117;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .code-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #161b22;
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .code-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .code-dot.r { background: #ff5f56; }
+    .code-dot.y { background: #ffbd2e; }
+    .code-dot.g { background: #27c93f; }
+    .code-title {
+      margin-left: 10px;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: #8b949e;
+    }
+    .code-content {
+      padding: 1rem;
+      overflow-x: auto;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: #c9d1d9;
+      line-height: 1.5;
+      margin: 0;
+      text-align: left;
+    }
+    /* Couleurs syntaxiques */
+    .token-kw { color: #ff7b72; } /* Keyword */
+    .token-fn { color: #d2a8ff; } /* Function */
+    .token-str { color: #a5d6ff; } /* String */
+    .token-num { color: #79c0ff; } /* Number */
+    .token-comment { color: #8b949e; font-style: italic; } /* Comment */
+    .token-tag { color: #7ee787; } /* HTML Tag */
+    .token-attr { color: #79c0ff; } /* Attribute */
+
     .reflexion-bloc {
       margin-top: 1.25rem;
       padding: 1.25rem;
@@ -947,6 +994,53 @@
         title: 'Programmer',
         desc: 'Niveau 1 — S\'intégrer dans un service informatique : utiliser un système informatique et ses outils, lire et modifier des programmes, traduire des algorithmes, connaître l\'architecture web et les bases de données.',
         colorClass: 'c3',
+        presentationHtml: `
+          <p><strong>Présentation des SAE 1.04 & 1.05 : Développement et Traitement de données</strong></p>
+          <p>La compétence "Programmer" rassemble deux projets majeurs du semestre. La <strong>SAE 1.04</strong> concernait la création intégrale d'un site web (ce portfolio) en utilisant les langages du web (HTML, CSS, JS) et le déploiement via GitHub. La <strong>SAE 1.05</strong> nous a plongés dans la programmation Python pour récupérer, nettoyer et agréger des données brutes (open data) de manière collaborative sur GitLab.</p>
+          
+          <div class="sae-presentation-images" style="gap:1.5rem; margin-top:2rem;">
+            <div class="code-window">
+              <div class="code-header">
+                <div class="code-dot r"></div><div class="code-dot y"></div><div class="code-dot g"></div>
+                <div class="code-title">portfolio.html — SAE 1.04</div>
+              </div>
+              <pre class="code-content"><code><span class="token-tag">&lt;section</span> <span class="token-attr">class</span>=<span class="token-str">"parcours-section"</span><span class="token-tag">&gt;</span>
+  <span class="token-tag">&lt;div</span> <span class="token-attr">class</span>=<span class="token-str">"container"</span><span class="token-tag">&gt;</span>
+    <span class="token-tag">&lt;div</span> <span class="token-attr">class</span>=<span class="token-str">"reveal"</span><span class="token-tag">&gt;</span>
+      <span class="token-tag">&lt;h2</span> <span class="token-attr">class</span>=<span class="token-str">"section-title"</span><span class="token-tag">&gt;</span>Parcours<span class="token-tag">&lt;/h2&gt;</span>
+      <span class="token-tag">&lt;p&gt;</span>Spécialisation BUT R&amp;T<span class="token-tag">&lt;/p&gt;</span>
+    <span class="token-tag">&lt;/div&gt;</span>
+  <span class="token-tag">&lt;/div&gt;</span>
+<span class="token-tag">&lt;/section&gt;</span>
+<span class="token-tag">&lt;script&gt;</span>
+  <span class="token-comment">// Apparition au scroll</span>
+  <span class="token-kw">const</span> observer = <span class="token-kw">new</span> <span class="token-fn">IntersectionObserver</span>(e =&gt; {
+    e.forEach(el =&gt; el.isIntersecting <span class="token-kw">&amp;&amp;</span> el.target.classList.<span class="token-fn">add</span>(<span class="token-str">'visible'</span>));
+  });
+<span class="token-tag">&lt;/script&gt;</span></code></pre>
+            </div>
+
+            <div class="code-window">
+              <div class="code-header">
+                <div class="code-dot r"></div><div class="code-dot y"></div><div class="code-dot g"></div>
+                <div class="code-title">main.py — SAE 1.05</div>
+              </div>
+              <pre class="code-content"><code><span class="token-kw">import</span> csv
+<span class="token-kw">import</span> json
+
+<span class="token-kw">def</span> <span class="token-fn">traiter_donnees</span>(fichier_entree, annee_cible):
+    <span class="token-comment"># Extraction et filtrage des datasets publics</span>
+    donnees_filtrees = []
+    <span class="token-kw">with</span> open(fichier_entree, <span class="token-str">'r'</span>, encoding=<span class="token-str">'utf-8'</span>) <span class="token-kw">as</span> f:
+        lecteur = csv.<span class="token-fn">DictReader</span>(f)
+        <span class="token-kw">for</span> ligne <span class="token-kw">in</span> lecteur:
+            <span class="token-kw">if</span> ligne[<span class="token-str">'annee'</span>] == <span class="token-fn">str</span>(annee_cible):
+                donnees_filtrees.<span class="token-fn">append</span>(ligne)
+                
+    <span class="token-kw">return</span> donnees_filtrees</code></pre>
+            </div>
+          </div>
+        `,
         ce: [
           {
             code: 'AC13.01',
@@ -954,9 +1048,17 @@
             projects: [{
               sae: 'SAE 1.04 — S1',
               title: 'Se présenter sur Internet',
-              desc: 'Utilisation d\'un environnement de développement complet : éditeur de code VS Code, navigateur DevTools, terminal Linux, Git pour le versionnage du code source du portfolio.',
-              tags: ['VS Code', 'Git', 'Linux', 'DevTools'],
-              link: '#'
+              desc: 'Utilisation d\'un environnement de développement complet (VS Code, Git, Linux) pour le développement du portfolio.',
+              tags: ['VS Code', 'Git', 'Ubuntu Linux', 'Terminal'],
+              link: 'https://github.com/raphaelmacker/raphael-macker.github.io',
+              reflexion: `
+                <p><strong>Ce que j'ai fait :</strong> J'ai configuré et utilisé un environnement de travail complet sous Linux (Ubuntu) avec des éditeurs de code professionnels pour concevoir mon site web.</p>
+                <p><strong>Comment j'ai fait ?</strong> J'ai installé Visual Studio Code via le terminal, utilisé les extensions (comme Live Server pour voir mes changements en direct) et paramétré Git pour suivre les versions de mes fichiers HTML/CSS de manière sécurisée.</p>
+                <p><strong>Pourquoi j'ai fait ?</strong> Un informaticien doit être à l'aise avec ses outils. Travailler sous Linux et utiliser un terminal plutôt que la souris fait gagner un temps précieux et prépare aux exigences des entreprises d'ingénierie.</p>
+                <p><strong>Mes difficultés :</strong> La prise en main des commandes de base du terminal Linux (navigation dans les dossiers, gestion des droits avec \`chmod\`) était laborieuse au début par rapport à Windows.</p>
+                <p><strong>Ce que j'ai appris :</strong> À être totalement autonome sur un système d'exploitation de type UNIX et à utiliser la puissance des raccourcis claviers dans un éditeur de texte avancé.</p>
+                <p><strong>Améliorations :</strong> Apprendre à utiliser des éditeurs de texte en ligne de commande pure comme \`Vim\` ou \`Nano\` pour pouvoir coder directement sur des serveurs distants sans interface graphique.</p>
+              `
             }]
           },
           {
@@ -965,9 +1067,17 @@
             projects: [{
               sae: 'SAE 1.05 — S1',
               title: 'Traiter des données',
-              desc: 'Lecture, correction et modification de scripts Python pour récupérer des données CSV depuis data.gouv.fr et les agréger. Débogage et amélioration du code existant.',
-              tags: ['Python', 'Débogage', 'CSV', 'data.gouv.fr'],
-              link: 'https://gitlab.univ-artois.fr/raphael_macker/sae-1.05'
+              desc: 'Lecture, correction et amélioration de scripts Python existants pour récupérer et agréger des données.',
+              tags: ['Python', 'Débogage', 'Analyse de code'],
+              link: 'https://gitlab.univ-artois.fr/raphael_macker/sae-1.05',
+              reflexion: `
+                <p><strong>Ce que j'ai fait :</strong> J'ai dû reprendre du code Python qui comportait des erreurs (bugs), comprendre ce qu'il était censé faire, puis le corriger pour qu'il s'exécute correctement.</p>
+                <p><strong>Comment j'ai fait ?</strong> J'ai utilisé les messages d'erreurs (tracebacks) fournis par l'interpréteur Python dans la console. J'ai ajouté des commandes \`print()\` stratégiques pour observer l'évolution de mes variables en direct, et modifié la syntaxe fautive.</p>
+                <p><strong>Pourquoi j'ai fait ?</strong> Dans le monde du travail, on passe beaucoup plus de temps à lire et réparer le code des autres qu'à écrire le sien de zéro. Le débogage est une compétence d'investigation cruciale.</p>
+                <p><strong>Mes difficultés :</strong> Comprendre la logique d'un code que je n'avais pas écrit moi-même, surtout quand les variables n'étaient pas explicitement nommées par leur auteur initial.</p>
+                <p><strong>Ce que j'ai appris :</strong> À ne pas paniquer face à une erreur rouge dans le terminal, mais à lire la dernière ligne de l'erreur (IndexError, TypeError...) pour cibler immédiatement la cause du problème.</p>
+                <p><strong>Améliorations :</strong> Utiliser le véritable "Débogueur" intégré à VS Code (avec des points d'arrêt ou "breakpoints") plutôt que d'utiliser des \`print()\` partout dans le code.</p>
+              `
             }]
           },
           {
@@ -976,9 +1086,17 @@
             projects: [{
               sae: 'SAE 1.05 — S1',
               title: 'Traiter des données',
-              desc: 'Traduction des algorithmes de traitement (agrégation, filtrage, conversion) en Python fonctionnel. Adaptation de la logique métier à l\'environnement d\'exécution cible.',
-              tags: ['Python', 'Algorithmes', 'JSON', 'Agrégation'],
-              link: 'https://gitlab.univ-artois.fr/raphael_macker/sae-1.05'
+              desc: 'Traduction des algorithmes de traitement (boucles, conditions, listes) en code Python fonctionnel.',
+              tags: ['Algorithmes', 'Python', 'Logique'],
+              link: 'https://gitlab.univ-artois.fr/raphael_macker/sae-1.05',
+              reflexion: `
+                <p><strong>Ce que j'ai fait :</strong> J'ai transformé des idées de logique brute (par exemple : "Si la donnée date de 2023, alors garde-la, sinon jette-la") en véritables instructions en langage Python.</p>
+                <p><strong>Comment j'ai fait ?</strong> J'ai d'abord écrit ma logique sous forme de pseudo-code sur papier. Ensuite, j'ai traduit cela en utilisant les structures de contrôle de Python : les boucles \`for\`, les conditions \`if/else\`, et les structures de données comme les listes (\`[]\`) ou les dictionnaires (\`{}\`).</p>
+                <p><strong>Pourquoi j'ai fait ?</strong> La machine ne comprend pas le langage humain. Il faut découper un problème complexe en une suite d'opérations mathématiques et logiques très simples (un algorithme) pour que l'ordinateur puisse l'exécuter.</p>
+                <p><strong>Mes difficultés :</strong> Gérer l'indentation stricte de Python (les espaces en début de ligne). Une mauvaise indentation modifie complètement le comportement d'une boucle ou d'une condition.</p>
+                <p><strong>Ce que j'ai appris :</strong> La puissance des algorithmes pour automatiser des tâches répétitives. Un programme bien pensé peut traiter 10 000 lignes de données en une fraction de seconde.</p>
+                <p><strong>Améliorations :</strong> Optimiser mes algorithmes (la "complexité algorithmique") pour qu'ils s'exécutent encore plus rapidement en évitant les boucles inutiles imbriquées les unes dans les autres.</p>
+              `
             }]
           },
           {
@@ -987,9 +1105,17 @@
             projects: [{
               sae: 'SAE 1.04 — S1',
               title: 'Se présenter sur Internet',
-              desc: 'Développement du portfolio personnel en HTML/CSS/JS vanilla : maîtrise de la structure DOM, du modèle de boîte CSS, du responsive design et du déploiement sur GitHub Pages.',
-              tags: ['HTML', 'CSS', 'JavaScript', 'Responsive', 'GitHub Pages'],
-              link: '#'
+              desc: 'Développement complet du portfolio : structure du DOM, stylisation CSS, interactions JS et hébergement web.',
+              tags: ['HTML5', 'CSS3', 'JavaScript', 'GitHub Pages'],
+              link: 'https://github.com/raphaelmacker/raphael-macker.github.io',
+              reflexion: `
+                <p><strong>Ce que j'ai fait :</strong> J'ai architecturé, conçu le design et codé ce portfolio de toutes pièces, pour ensuite le mettre en ligne de manière accessible au public.</p>
+                <p><strong>Comment j'ai fait ?</strong> J'ai structuré l'information avec du HTML sémantique (balises \`<section>\`, \`<main>\`). J'ai utilisé CSS pour le modèle de boîte, les couleurs (via des variables natives) et le Responsive Design (adaptation aux smartphones). Enfin, j'ai ajouté du JavaScript pour les modales et l'hébergement gratuit s'est fait sur GitHub Pages.</p>
+                <p><strong>Pourquoi j'ai fait ?</strong> Le web est le support de communication numéro un. Savoir créer une interface utilisateur propre et héberger un service est essentiel pour présenter son travail et comprendre le fonctionnement d'un client HTTP face à un serveur.</p>
+                <p><strong>Mes difficultés :</strong> Rendre le site parfaitement "Responsive", c'est-à-dire faire en sorte que la disposition des compétences (qui est en grille) s'affiche correctement sur un petit écran de téléphone sans casser le design.</p>
+                <p><strong>Ce que j'ai appris :</strong> Le fonctionnement du DOM (Document Object Model) et comment JavaScript permet de modifier la page en temps réel sans avoir à la recharger.</p>
+                <p><strong>Améliorations :</strong> Séparer mon code en plusieurs fichiers distincts (\`style.css\`, \`main.js\`) pour chaque page afin de garder un code plus propre et plus facile à maintenir sur le long terme.</p>
+              `
             }]
           },
           {
@@ -998,9 +1124,17 @@
             projects: [{
               sae: 'SAE 1.05 — S1',
               title: 'Traiter des données',
-              desc: 'Choix et justification des formats de données (CSV → JSON) pour le pipeline de traitement. Argumentation du recours à quickchart.io pour la visualisation sans backend lourd.',
-              tags: ['CSV', 'JSON', 'quickchart.io', 'Architecture'],
-              link: 'https://gitlab.univ-artois.fr/raphael_macker/sae-1.05'
+              desc: 'Choix et manipulation de formats de fichiers (CSV vers JSON) pour préparer les données à être affichées.',
+              tags: ['CSV', 'JSON', 'Structures de données'],
+              link: 'https://gitlab.univ-artois.fr/raphael_macker/sae-1.05',
+              reflexion: `
+                <p><strong>Ce que j'ai fait :</strong> J'ai décidé du format dans lequel stocker les données traitées par mon script Python pour qu'elles puissent être réutilisées facilement par la suite.</p>
+                <p><strong>Comment j'ai fait ?</strong> Les données brutes provenaient de \`data.gouv.fr\` en format CSV (texte séparé par des virgules). Après traitement en Python, j'ai choisi d'exporter les résultats en format JSON (tableaux et paires clé/valeur).</p>
+                <p><strong>Pourquoi j'ai fait ?</strong> Le format CSV est excellent pour stocker des tableaux simples, mais le JSON est beaucoup plus puissant pour hiérarchiser les informations et est le standard absolu pour communiquer des données sur le web (notamment pour générer des graphiques).</p>
+                <p><strong>Mes difficultés :</strong> Comprendre comment la librairie Python \`json\` sérialise (transforme) les dictionnaires Python en chaînes de caractères texte, et l'importance de l'encodage (UTF-8) pour ne pas casser les accents français.</p>
+                <p><strong>Ce que j'ai appris :</strong> L'importance de la structuration des données en amont. Si on choisit la mauvaise structure de données, tout le code qui suit sera inutilement compliqué à écrire.</p>
+                <p><strong>Améliorations :</strong> Explorer les bases de données relationnelles (SQL) pour stocker les informations de manière encore plus robuste que dans de simples fichiers textes.</p>
+              `
             }]
           },
           {
@@ -1009,9 +1143,17 @@
             projects: [{
               sae: 'SAE 1.05 — S1',
               title: 'Traiter des données',
-              desc: 'Projet conduit en équipe avec gestion collaborative du code sur GitLab. Répartition des tâches, revues de code et intégration des contributions de chaque membre.',
-              tags: ['GitLab', 'Git', 'Travail en équipe', 'Collaboration'],
-              link: 'https://gitlab.univ-artois.fr/raphael_macker/sae-1.05'
+              desc: 'Projet de traitement de données mené en équipe avec gestion du code source décentralisée sur GitLab.',
+              tags: ['GitLab', 'Git', 'Travail en équipe', 'Commits'],
+              link: 'https://gitlab.univ-artois.fr/raphael_macker/sae-1.05',
+              reflexion: `
+                <p><strong>Ce que j'ai fait :</strong> J'ai travaillé en groupe sur le même code source sans que nous n'écrasions mutuellement nos modifications.</p>
+                <p><strong>Comment j'ai fait ?</strong> Nous avons utilisé le logiciel de versionnage Git et la plateforme GitLab de l'Université. Chacun travaillait de son côté, faisait des "commits" (sauvegardes) avec des messages clairs, puis nous fusionnions (push/pull) notre travail sur le dépôt central.</p>
+                <p><strong>Pourquoi j'ai fait ?</strong> Dans une entreprise, personne ne code seul en s'envoyant des fichiers par clé USB. Utiliser Git est la norme industrielle obligatoire pour le travail collaboratif en informatique.</p>
+                <p><strong>Mes difficultés :</strong> Gérer les "conflits de fusion" (merge conflicts). C'est arrivé quand un camarade et moi avons modifié la même ligne de code en même temps. Il a fallu résoudre le conflit manuellement.</p>
+                <p><strong>Ce que j'ai appris :</strong> La discipline du travail en équipe : ne pas pousser de code cassé sur la branche principale (\`main\`) et écrire des messages de commit explicites pour ses collègues.</p>
+                <p><strong>Améliorations :</strong> Apprendre à utiliser les "Branches" (\`git branch\`) de manière stricte pour développer de nouvelles fonctionnalités de manière totalement isolée avant de les intégrer au projet principal.</p>
+              `
             }]
           }
         ]
